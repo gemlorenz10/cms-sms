@@ -3,13 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
+import { HttpService } from '../providers/http';
 
+import { AppComponent } from './app.component';
+import { CmsPage } from '../pages/cms/cms';
 import { HomePage } from '../pages/home/home';
 import { HelpPage } from '../pages/help/help';
 
 const appRoutes: Routes = [
   { path: 'help', component: HelpPage},
+  { path: 'cms', component: CmsPage},
   { path: '', component: HomePage }
 ];
 
@@ -17,15 +20,17 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomePage,
-    HelpPage
+    HelpPage,
+    CmsPage,
+   
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot( appRoutes )
   ],
-  bootstrap: [ AppComponent ],
-  providers: [ ]
+  bootstrap: [ AppComponent ],  
+  providers: [ HttpService ]
 })
 export class AppModule {}
 

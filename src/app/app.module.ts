@@ -7,20 +7,18 @@ import { HttpService } from '../providers/http';
 
 import { AppComponent } from './app.component';
 import { CmsPage } from '../pages/cms/cms';
-import { HomePage } from '../pages/home/home';
-import { HelpPage } from '../pages/help/help';
+
 
 const appRoutes: Routes = [
-  { path: 'help', component: HelpPage},
-  { path: 'cms', component: CmsPage},
-  { path: '', component: HomePage }
+
+  { path: '', component: CmsPage}
+
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePage,
-    HelpPage,
+
     CmsPage,
    
   ],

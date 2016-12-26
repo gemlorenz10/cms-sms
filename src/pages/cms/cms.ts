@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpService } from '../../providers/http';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/repeat';
 /*
   Generated class for the Cms page.
 
@@ -12,11 +14,14 @@ import { HttpService } from '../../providers/http';
   providers: [HttpService]
 })
 export class CmsPage {
-head;
+getStamp;
   constructor( private httpService: HttpService ) {
-   this.head  = httpService.stamp;
-   console.log( this.head );
-    
+     this.getStamp = httpService.request().subscribe( re => this.stamp(re))
   }
+
+stamp( data ){
+  console.log( data )
+}
+
 
 }

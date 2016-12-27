@@ -19,9 +19,8 @@ request;
         this.request = () => { 
                 //return http.get('http://www.philgo.com/?module=ajax&action=version&submit=1')
               return http
-                        .get('http://localhost/sample.php')
+                        .get('http://localhost/sampe.php')
                         .retry(5)
-                        .delay(1000)
                         .map(res => res.json()
                         )
           }

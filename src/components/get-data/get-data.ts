@@ -14,7 +14,7 @@ import 'rxjs/add/operator/expand';
 */
 @Component({
   selector: 'get-data',
-  templateUrl: 'get-data.html',
+  template: '<button (click)="onClickGetRequest(getData)" >{{ title }}</button>',
   providers: [HttpService]
 })
 export class GetDataComponent {
@@ -26,7 +26,7 @@ export class GetDataComponent {
               
   }
   stamp( data ){
-    //append bar ok
+    //append bar when ok
     console.log( data )
   }
 
@@ -36,10 +36,15 @@ export class GetDataComponent {
 
   }
 
-  getRequest( getData ) {
+  onClickGetRequest( getData ) {
+    console.log( 'onClickGetRequest' );
+    this.getRequest( getData )
+  }
+//Re-usable functions
+  getRequest(getData){
     getData.request()
         .subscribe( 
-           (re) => this.stamp(re),
+           (re) => this.stamp(re.stamp),
            (error) => this.handleError(error))
   }
 }

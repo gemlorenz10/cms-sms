@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpService } from '../../providers/http';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/repeat';
+//Components
+import { GetDataComponent } from '../../components/get-data'
 /*
   Generated class for the Cms page.
 
@@ -11,17 +10,8 @@ import 'rxjs/add/operator/repeat';
 @Component({
   selector: 'page-cms',
   templateUrl: 'cms.html',
-  providers: [HttpService]
 })
 export class CmsPage {
-getStamp;
-  constructor( private httpService: HttpService ) {
-     this.getStamp = httpService.request().subscribe( re => this.stamp(re))
-  }
-
-stamp( data ){
-  console.log( data )
-}
 
 
 }

@@ -6,6 +6,10 @@ import { HttpModule } from '@angular/http';
 import { HttpService } from '../providers/http';
 
 import { AppComponent } from './app.component';
+import { GetDataComponent } from '../components/get-data/get-data'
+
+
+//pages
 import { CmsPage } from '../pages/cms/cms';
 
 
@@ -18,6 +22,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    GetDataComponent,
 
     CmsPage,
    
@@ -31,5 +36,3 @@ const appRoutes: Routes = [
   providers: [ HttpService ]
 })
 export class AppModule {}
-
-

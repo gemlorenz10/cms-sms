@@ -22,7 +22,6 @@ request;
               return http
                         .get('http://localhost/sample.php')
                         .retry(5)
-                        //.catch( this.handleError )
                         .delay(1000)
                         .map(res => res.json()
                         )

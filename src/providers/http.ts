@@ -20,24 +20,12 @@ request;
         this.request = () => { 
                 //return http.get('http://www.philgo.com/?module=ajax&action=version&submit=1')
               return http
-                        .get('http://localhost/sampe.php')
+                        .get('http://localhost/sample.php')
+                        .retry(5)
+                        //.catch( this.handleError )
                         .delay(1000)
                         .map(res => res.json()
-                          // (res: Response) => {
-                          //   if (res) {
-                          //       if (res.status === 201) {
-                          //           return [{ status: res.status, json: res }]
-                          //       }
-                          //       else if (res.status === 200) {
-                          //           return [{ status: res.status, json: res }]
-                          //       }
-                          //   }
-                        //}
                         )
           }
     }
 }
-
-
-//Link to another possible solution
-// http://stackoverflow.com/questions/36628498/angular2-http-error-handling

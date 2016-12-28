@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
-import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/delay';
@@ -17,10 +16,10 @@ response;
 request;
   constructor(private http: Http) {
         this.request = () => { 
-                //return http.get('http://www.philgo.com/?module=ajax&action=version&submit=1')
-              return http
-                        .get('http://localhost/sampe.php')
-                        .retry(5)
+                return http.get('http://www.philgo.com/?module=ajax&action=version&submit=1')
+              // return http
+              //           .get('http://localhost/sample.php')
+                        //.retry(5)
                         .map(res => res.json()
                         )
           }

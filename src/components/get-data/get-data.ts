@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 //Services
 import { HttpService } from '../../providers/http';
 
@@ -14,20 +14,41 @@ import 'rxjs/add/operator/expand';
 */
 @Component({
   selector: 'get-data',
-  template: '<button (click)="onClickGetRequest(getData)" >{{ title }}</button>',
+  template: '<div *ngFor="let stamp of stampContainer" >{{ stamp }}</div><br>',
   providers: [HttpService]
 })
-export class GetDataComponent {
+export class GetDataComponent implements OnInit {
+//config
+  timeOut:number = 1000;  //timeout delay for request to retry in millisecond
+  barLength:number = 5; // lenght of the bar
 
-  title: string = 'Get Data';
- @Input() getData:any;
+//program variables
+  showBar:boolean = false;
+  stampContainer = [];
+  removeIndex; //store shifted index then erase it/
+
+ getData:any;
  constructor( private httpService: HttpService ) {
      this.getData = httpService
-              
+
   }
-  stamp( data ){
+//On initialize
+ ngOnInit(){
+    this.getRequest( this.getData )
+  }
+
+  handleSuccess( data ){
     //append bar when ok
-    console.log( data )
+    this.showBar = !this.showBar;
+    this.stampContainer.push( data );
+    
+    if ( this.stampContainer.length == this.barLength + 1 ){
+      this.removeIndex = this.stampContainer.shift();
+      console.log( 'must not equal to null or undefined', this.removeIndex )
+    }
+    this.removeIndex = null;
+    console.log( 'removed index mus be equal to null', this.removeIndex )
+    console.log( this.stampContainer.length )
   }
 
   handleError( err: any ){
@@ -44,7 +65,8 @@ export class GetDataComponent {
   getRequest(getData){
     getData.request()
         .subscribe( 
-           (re) => this.stamp(re.stamp),
+           (re) => this.handleSuccess(re.stamp),
            (error) => this.handleError(error))
+           setTimeout( ()=>{this.getRequest( this.getData )}, this.timeOut );
   }
 }

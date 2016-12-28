@@ -1,3 +1,32 @@
-get-data {
+bar-graph{
+    //position: relative;
+   display:block;
+    background-color: #e6e6e6;
+    margin:0;
+    padding:0;
+    .graphUrl{
 
-}
+         margin: 0 auto;
+            width: 320px;
+            text-align: center;
+       
+        .success{
+            display: inline-block;
+            width:1px;
+            height:50px;
+            background-color:green;
+        }
+        .error{
+            display: inline-block;
+            width:1px;
+            height:50px;
+            background-color:#b30000;
+        }
+        
+    }
+}              
+              
+              
+              
+
+

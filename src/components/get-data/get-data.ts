@@ -13,46 +13,33 @@ import 'rxjs/add/operator/expand';
   for more info on Angular 2 Components.
 */
 @Component({
-  selector: 'bar',
-  template: `
-                  <span *ngFor="let stamp of stampContainer"
-                  [class.success]="barColor" 
-                  [class.error]="!barColor"  
+  selector: 'bar-graph',
+  template: `<div class="graphUrl">
+                <div class="title">{{ graphUrl }}</div>
+                <div class="bar">
+                  <span *ngFor="let res of responseData"
+                    [ngClass]="res.status == 200 ? 'success' : 'error'"   
                   ></span>
+                </div>
+            </div>
                 `,
-  styles: [`
-              .success{
-                display: inline-block;
-                width:10px;
-                height:25px;
-                background-color:green;
-              }
-               .error{
-                display: inline-block;
-                width:10px;
-                height:25px;
-                background-color:red;
-              }
-            `],
   providers: [HttpService]
 })
 export class GetDataComponent {
+//config
+  timeOut:number = 50;  //timeout delay for request to retry in millisecond
+  barLength:number = 320; // lenght of the bar
 
- @Input('BarColor') barColor; // if true green else red
-  @Input('Stamp') stampContainer = [];
+//
+barColor; // if true green else red
+responseData = [];
+graphUrl;
+httpServe:any;
 
-
-
- httpServe:any;
  constructor( private httpService: HttpService ) {
      this.httpServe = httpService
-
+     this.graphUrl = httpService.requestUrl
   }
-
-//config
-  timeOut:number = 1000;  //timeout delay for request to retry in millisecond
-  barLength:number = 20; // lenght of the bar
-
 //program variables
 removeIndex;
 
@@ -67,41 +54,42 @@ removeIndex;
   handleRequest( httpServe ){
     httpServe.request()
         .subscribe( 
-           (re) => this.handleSuccess(re.stamp), //get the data
-           (error) => this.handleError(error.status)) //get http status code
-           setTimeout( ()=>{this.handleRequest( this.httpServe )}, this.timeOut );
+           ( re ) => this.handleSuccess( re ), //get the data
+           ( error ) => this.handleError( error )) //get http status code
+           setTimeout( ()=>{ this.handleRequest( this.httpServe ) }, this.timeOut );
   }
 
 
 
 //Re-usable functions
   handleSuccess( data ){
-     this.handleResponse( data )
-      this.barColor = true;  
+    let success = {
+      stamp : data.stamp,
+      status : '200'
+    }
+    this.handleResponse( success )  
 }
 
   handleError( err: any ){
+    let error = {
+      stamp : err[ '_body' ].timeStamp,
+      status : err.status
+    }
     //send sms with error
-     this.handleResponse( err )
-      this.barColor = false;
+     this.handleResponse( error )
   }
 //Handle the response from server
   handleResponse( data ){
     //append bar
-    this.stampContainer.push( data );
+    this.responseData.push( data );
     //limit bar lenght
-    if ( this.stampContainer.length == this.barLength + 1 ){
-      this.removeIndex = this.stampContainer.shift();
-      console.log( 'must not equal to null or undefined', this.removeIndex )
-    }
-    
-
-
+    if ( this.responseData.length == this.barLength + 1 ){
+      this.removeIndex = this.responseData.shift();
+      //console.log( 'must not equal to null or undefined', this.removeIndex )
+          }
+   // console.log('Response Data', this.responseData)
     this.removeIndex = null;
-    console.log( 'removed index mus be equal to null', this.removeIndex )
-    console.log( this.stampContainer.length )
-
+   // console.log( 'removed index mus be equal to null', this.removeIndex )
+   // console.log( this.responseData.length )
   }
-
-
 }

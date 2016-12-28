@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 //providers
 //Components
-import { GetDataComponent } from '../../components/get-data/get-data'
 
 
 
@@ -14,11 +13,13 @@ import { GetDataComponent } from '../../components/get-data/get-data'
 @Component({
   selector: 'page-cms',
   templateUrl: 'cms.html',
-  providers: [GetDataComponent]
 })
-export class CmsPage {
 
-constructor( getData: GetDataComponent ){
+
+
+export class CmsPage {
+pageTitle ="Center Monitoring System"
+constructor(){
 
 }
 }

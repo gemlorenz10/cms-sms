@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 //Services
 import { HttpService } from '../../providers/http';
 
@@ -13,24 +13,50 @@ import 'rxjs/add/operator/expand';
   for more info on Angular 2 Components.
 */
 @Component({
-  selector: 'get-data',
-  template: '<div *ngFor="let stamp of stampContainer" >{{ stamp }}</div><br>',
+  selector: 'bar',
+  template: `
+                  <span *ngFor="let stamp of stampContainer"
+                  [class.success]="barColor" 
+                  [class.error]="!barColor"  
+                  ></span>
+                `,
+  styles: [`
+              .success{
+                display: inline-block;
+                width:10px;
+                height:25px;
+                background-color:green;
+              }
+               .error{
+                display: inline-block;
+                width:10px;
+                height:25px;
+                background-color:red;
+              }
+            `],
   providers: [HttpService]
 })
-export class GetDataComponent implements OnInit {
-//config
-  timeOut:number = 1000;  //timeout delay for request to retry in millisecond
-  barLength:number = 5; // lenght of the bar
+export class GetDataComponent {
 
-//program variables
-  stampContainer = [];
-  removeIndex; //store shifted index then erase it/
+ @Input('BarColor') barColor; // if true green else red
+  @Input('Stamp') stampContainer = [];
+
+
 
  httpServe:any;
  constructor( private httpService: HttpService ) {
      this.httpServe = httpService
 
   }
+
+//config
+  timeOut:number = 1000;  //timeout delay for request to retry in millisecond
+  barLength:number = 20; // lenght of the bar
+
+//program variables
+removeIndex;
+
+
 //On initialize
  ngOnInit(){
     this.handleRequest( this.httpServe )
@@ -51,11 +77,13 @@ export class GetDataComponent implements OnInit {
 //Re-usable functions
   handleSuccess( data ){
      this.handleResponse( data )
-  }
+      this.barColor = true;  
+}
 
   handleError( err: any ){
     //send sms with error
      this.handleResponse( err )
+      this.barColor = false;
   }
 //Handle the response from server
   handleResponse( data ){
@@ -67,9 +95,13 @@ export class GetDataComponent implements OnInit {
       console.log( 'must not equal to null or undefined', this.removeIndex )
     }
     
+
+
     this.removeIndex = null;
     console.log( 'removed index mus be equal to null', this.removeIndex )
     console.log( this.stampContainer.length )
 
   }
+
+
 }

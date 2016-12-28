@@ -23,50 +23,53 @@ export class GetDataComponent implements OnInit {
   barLength:number = 5; // lenght of the bar
 
 //program variables
-  showBar:boolean = false;
   stampContainer = [];
   removeIndex; //store shifted index then erase it/
 
- getData:any;
+ httpServe:any;
  constructor( private httpService: HttpService ) {
-     this.getData = httpService
+     this.httpServe = httpService
 
   }
 //On initialize
  ngOnInit(){
-    this.getRequest( this.getData )
+    this.handleRequest( this.httpServe )
   }
 
+
+//Function to request Data from server
+  handleRequest( httpServe ){
+    httpServe.request()
+        .subscribe( 
+           (re) => this.handleSuccess(re.stamp), //get the data
+           (error) => this.handleError(error.status)) //get http status code
+           setTimeout( ()=>{this.handleRequest( this.httpServe )}, this.timeOut );
+  }
+
+
+
+//Re-usable functions
   handleSuccess( data ){
-    //append bar when ok
-    this.showBar = !this.showBar;
-    this.stampContainer.push( data );
-    
-    if ( this.stampContainer.length == this.barLength + 1 ){
-      this.removeIndex = this.stampContainer.shift();
-      console.log( 'must not equal to null or undefined', this.removeIndex )
-    }
-    this.removeIndex = null;
-    console.log( 'removed index mus be equal to null', this.removeIndex )
-    console.log( this.stampContainer.length )
+     this.handleResponse( data )
   }
 
   handleError( err: any ){
     //send sms with error
-      console.error('error', err)
-
+     this.handleResponse( err )
   }
+//Handle the response from server
+  handleResponse( data ){
+    //append bar
+    this.stampContainer.push( data );
+    //limit bar lenght
+    if ( this.stampContainer.length == this.barLength + 1 ){
+      this.removeIndex = this.stampContainer.shift();
+      console.log( 'must not equal to null or undefined', this.removeIndex )
+    }
+    
+    this.removeIndex = null;
+    console.log( 'removed index mus be equal to null', this.removeIndex )
+    console.log( this.stampContainer.length )
 
-  onClickGetRequest( getData ) {
-    console.log( 'onClickGetRequest' );
-    this.getRequest( getData )
-  }
-//Re-usable functions
-  getRequest(getData){
-    getData.request()
-        .subscribe( 
-           (re) => this.handleSuccess(re.stamp),
-           (error) => this.handleError(error))
-           setTimeout( ()=>{this.getRequest( this.getData )}, this.timeOut );
   }
 }

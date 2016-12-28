@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/retry';
-import 'rxjs/add/operator/delay';
 
 /*
   Generated class for the Http provider.
@@ -12,16 +10,17 @@ import 'rxjs/add/operator/delay';
 */
 @Injectable()
 export class HttpService {
-response;
+//config
+requestUrl:string = 'http://localhost/sample.php';
+//requestUrl:string = 'http://www.philgo.com/?module=ajax&action=version&submit=1';
+
+
 request;
   constructor(private http: Http) {
         this.request = () => { 
-                return http.get('http://www.philgo.com/?module=ajax&action=version&submit=1')
-              // return http
-              //           .get('http://localhost/sample.php')
-                        //.retry(5)
-                        .map(res => res.json()
-                        )
+               return http
+                        .get( this.requestUrl )
+                        .map(res => res.json())
           }
     }
 }

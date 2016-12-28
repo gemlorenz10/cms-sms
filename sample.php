@@ -1,6 +1,8 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 
+$timeStamp = time();
+
     $object = [
 "module" => "ajax",
  "action" => "version",
@@ -15,7 +17,7 @@ header('Access-Control-Allow-Origin: *');
  "acl" => "",
  "code" => 0,
  "site" => "philgo",
- "stamp" => 1482819375 ];
+ "stamp" => $timeStamp ];
  
  echo json_encode($object);
  ?>

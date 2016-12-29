@@ -19,7 +19,6 @@ import { Component } from '@angular/core';
 export class CmsPage {
 pageTitle ="Center Monitoring System"
 
-
 constructor(){
 
 }

@@ -13,7 +13,7 @@ import 'rxjs/add/operator/expand';
   for more info on Angular 2 Components.
 */
 @Component({
-  selector: 'bar-graph',
+  selector: 'server-monitor',
   template: `<div class="graph container .container-fluid">
                 <div class="title">{{ label }}</div>
         

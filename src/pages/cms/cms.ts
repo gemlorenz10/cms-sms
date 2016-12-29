@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 //Components
 
 
-
 /*
   Generated class for the Cms page.
 
@@ -19,6 +18,8 @@ import { Component } from '@angular/core';
 
 export class CmsPage {
 pageTitle ="Center Monitoring System"
+
+
 constructor(){
 
 }

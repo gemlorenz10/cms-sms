@@ -2,30 +2,31 @@ bar-graph{
     //position: relative;
    display:block;
     background-color: #e6e6e6;
-    margin:0;
+    margin:0, auto;
     padding:0;
-    .graphUrl{
-
-         margin: 0 auto;
-            width: 320px;
-            text-align: center;
+    
+    .graph{
+             width: 320px;
+             text-align: center;
+             overflow: hidden;
+            .bar{
+                float:left;
+            }
+            .success{
+                display: inline-block;
+                width:1px;
+                height:50px;
+                background-color:green;
+            }
+            .error{
+                display: inline-block;
+                width:1px;
+                height:50px;
+                background-color:#b30000;
+            }
        
-        .success{
-            display: inline-block;
-            width:1px;
-            height:50px;
-            background-color:green;
-        }
-        .error{
-            display: inline-block;
-            width:1px;
-            height:50px;
-            background-color:#b30000;
-        }
-        
-    }
-}              
-              
+    }             
+}             
               
               
 

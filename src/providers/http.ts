@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -10,16 +10,12 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class HttpService {
-//config
-requestUrl:string = 'http://localhost/sample.php';
-//requestUrl:string = 'http://www.philgo.com/?module=ajax&action=version&submit=1';
-
 
 request;
   constructor(private http: Http) {
-        this.request = () => { 
+        this.request = ( url ) => { //url is from get-data component
                return http
-                        .get( this.requestUrl )
+                        .get( url )
                         .map(res => res.json())
           }
     }

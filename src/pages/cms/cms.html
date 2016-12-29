@@ -1,5 +1,17 @@
 <header><h2 class="title">CMS Dashboard</h2></header>
-<section class="content container-fluid">
-<bar-graph></bar-graph>
+<section class="content container-full" >
+<bar-graph  
+    [label] = "'localhost'"
+    [graphUrl] = "'http://localhost/sample.php'">
+    </bar-graph>
 </section>
+
+<section class="content container-full" >
+<bar-graph
+  [label] = "'www.philgo.com'"
+  [graphUrl] = "'http://www.philgo.com/?module=ajax&action=version&submit=1'">
+  </bar-graph>
+</section>
+
+
 <!--footer>this is footer</footer-->

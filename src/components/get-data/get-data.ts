@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 //Services
 import { HttpService } from '../../providers/http';
 
@@ -14,12 +14,14 @@ import 'rxjs/add/operator/expand';
 */
 @Component({
   selector: 'bar-graph',
-  template: `<div class="graphUrl">
-                <div class="title">{{ graphUrl }}</div>
-                <div class="bar">
+  template: `<div class="graph container .container-fluid">
+                <div class="title">{{ label }}</div>
+        
+                <div class="bar  container .container-fluid">
                   <span *ngFor="let res of responseData"
                     [ngClass]="res.status == 200 ? 'success' : 'error'"   
                   ></span>
+         
                 </div>
             </div>
                 `,
@@ -27,23 +29,23 @@ import 'rxjs/add/operator/expand';
 })
 export class GetDataComponent {
 //config
-  timeOut:number = 50;  //timeout delay for request to retry in millisecond
-  barLength:number = 320; // lenght of the bar
+  timeOut:number = 500;  //timeout delay for request to retry in millisecond
+  barLength:number = 250; // lenght of the bar
 
 //
+@Input() graphUrl:String;
+@Input() label:String;
+
+//program variables
 barColor; // if true green else red
 responseData = [];
-graphUrl;
 httpServe:any;
+removeIndex;
 
  constructor( private httpService: HttpService ) {
      this.httpServe = httpService
-     this.graphUrl = httpService.requestUrl
+     //this.graphUrl = httpService.requestUrl
   }
-//program variables
-removeIndex;
-
-
 //On initialize
  ngOnInit(){
     this.handleRequest( this.httpServe )
@@ -52,14 +54,12 @@ removeIndex;
 
 //Function to request Data from server
   handleRequest( httpServe ){
-    httpServe.request()
+    httpServe.request( this.graphUrl )  // url will be passed into http service function
         .subscribe( 
            ( re ) => this.handleSuccess( re ), //get the data
            ( error ) => this.handleError( error )) //get http status code
            setTimeout( ()=>{ this.handleRequest( this.httpServe ) }, this.timeOut );
   }
-
-
 
 //Re-usable functions
   handleSuccess( data ){
@@ -87,9 +87,7 @@ removeIndex;
       this.removeIndex = this.responseData.shift();
       //console.log( 'must not equal to null or undefined', this.removeIndex )
           }
-   // console.log('Response Data', this.responseData)
     this.removeIndex = null;
-   // console.log( 'removed index mus be equal to null', this.removeIndex )
-   // console.log( this.responseData.length )
+   // console.log( this.removeIndex )
   }
 }

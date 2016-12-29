@@ -13,24 +13,14 @@ import 'rxjs/add/operator/expand';
   for more info on Angular 2 Components.
 */
 @Component({
-  selector: 'server-monitor',
-  template: `<div class="graph container .container-fluid">
-                <div class="title">{{ label }}</div>
-        
-                <div class="bar  container .container-fluid">
-                  <span *ngFor="let res of responseData"
-                    [ngClass]="res.status == 200 ? 'success' : 'error'"   
-                  ></span>
-         
-                </div>
-            </div>
-                `,
+  selector: 'website-monitor',
+  templateUrl: 'get-data.html',
   providers: [HttpService]
 })
 export class GetDataComponent {
 //config
   timeOut:number = 500;  //timeout delay for request to retry in millisecond
-  barLength:number = 250; // lenght of the bar
+  barLength:number = 1000; // lenght of the bar: 290 max
 
 //
 @Input() graphUrl:String;
@@ -83,6 +73,7 @@ removeIndex;
     //append bar
     this.responseData.push( data );
     //limit bar lenght
+    if (this.barLength > 285) this.barLength = 285;
     if ( this.responseData.length == this.barLength + 1 ){
       this.removeIndex = this.responseData.shift();
       //console.log( 'must not equal to null or undefined', this.removeIndex )

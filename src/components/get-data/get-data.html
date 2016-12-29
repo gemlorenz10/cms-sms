@@ -1,0 +1,15 @@
+<div class="graph container .container-fluid">
+                <div class="title"><span>{{ label }}</span>
+                  <div class="option">  
+                    <i class="fa fa-volume-up" aria-hidden="true"></i>
+                    <input type="text" class="drop-count"/>
+                    </div>
+                  </div>
+                <div class="bar  container .container-fluid">
+                  <span *ngFor="let res of responseData"
+                    [ngClass]="res.status == 200 ? 'success' : 'error'"   
+                  ></span>
+         
+                </div>
+            </div>
+                

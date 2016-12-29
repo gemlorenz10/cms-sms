@@ -1,4 +1,4 @@
-server-monitor{
+website-monitor{
     //position: relative;
    display:block;
     background-color: #e6e6e6;
@@ -9,8 +9,26 @@ server-monitor{
              width: 320px;
              text-align: center;
              overflow: hidden;
+            .title{
+                margin-top:2px;
+                margin-bottom:2px;
+                overflow: hidden;
+                .option{
+                    float:right;
+                    margin: 3px;
+                   //overflow: hidden;
+                    i{
+                        padding: 6px;
+                    }
+                    input{
+                        width:30px;
+                        padding: 0;
+                    }
+                }
+            }
             .bar{
-                float:left;
+                float: left;
+                padding:2px;
             }
             .success{
                 display: inline-block;

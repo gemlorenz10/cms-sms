@@ -9,37 +9,47 @@ website-monitor{
              width: 320px;
              text-align: center;
              overflow: hidden;
+             padding-top:5px;
+             padding-bottom: 5px;
             .title{
                 margin-top:2px;
                 margin-bottom:2px;
                 overflow: hidden;
+                span{
+                    //display: inline-block;
+                    font-size: 23px;
+                    float: left;
+                }
                 .option{
                     float:right;
                     margin: 3px;
                    //overflow: hidden;
                     i{
-                        padding: 6px;
+                        height: 28px;
+                        width: 70px;
+                        padding: 5px;
                     }
                     input{
-                        width:30px;
+                        width:35px;
                         padding: 0;
                     }
                 }
             }
             .bar{
                 float: left;
-                padding:2px;
+                padding:0;
+                border: 1px, solid, black;
             }
             .success{
                 display: inline-block;
                 width:1px;
-                height:50px;
+                height:70px;
                 background-color:green;
             }
             .error{
                 display: inline-block;
                 width:1px;
-                height:50px;
+                height:70px;
                 background-color:#b30000;
             }
        

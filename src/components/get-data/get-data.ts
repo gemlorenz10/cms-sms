@@ -34,10 +34,12 @@ removeIndex;
 
  constructor( private httpService: HttpService ) {
      this.httpServe = httpService
-     //this.graphUrl = httpService.requestUrl
   }
 //On initialize
  ngOnInit(){
+//if internet then handleInternet
+//if website then handleWebsite
+//if server then handleServer
     this.handleRequest( this.httpServe )
   }
 

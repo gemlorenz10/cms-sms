@@ -4,3 +4,6 @@ CMS mobile with sms
 
 Repository  
 https://github.com/thruthesky/aonic
+
+#SDK
+Android SDK Manager: http://www.techspot.com/downloads/5425-android-sdk.html

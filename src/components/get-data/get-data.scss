@@ -20,25 +20,15 @@ website-monitor{
                     font-size: 23px;
                     float: left;
                 }
-                .option{
-                    float:right;
-                    margin: 3px;
-                   //overflow: hidden;
-                    i{
-                        height: 28px;
-                        width: 70px;
-                        padding: 5px;
-                    }
-                    input{
-                        width:35px;
-                        padding: 0;
-                    }
-                }
+            
             }
             .bar{
-                float: left;
+              //  overflow: hidden;
                 padding:0;
                 border: 1px, solid, black;
+                span{
+                    float: left;
+                }
             }
             .success{
                 display: inline-block;

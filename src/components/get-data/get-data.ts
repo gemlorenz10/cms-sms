@@ -19,7 +19,7 @@ import 'rxjs/add/operator/expand';
 })
 export class GetDataComponent {
 //config
-  timeOut:number = 500;  //timeout delay for request to retry in millisecond
+  timeOut:number = 60000;  //timeout delay for request to retry in millisecond
   barLength:number = 1000; // lenght of the bar: 290 max
 
 //

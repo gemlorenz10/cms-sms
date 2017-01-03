@@ -7,6 +7,7 @@ import { HttpService } from '../providers/http';
 
 import { AppComponent } from './app.component';
 import { GetDataComponent } from '../components/get-data/get-data'
+import { SirenComponent } from '../components/siren/siren'
 
 
 //pages
@@ -23,7 +24,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     GetDataComponent,
-
+    SirenComponent,
     CmsPage,
    
   ],

@@ -1,0 +1,22 @@
+siren {
+
+ .option{
+     float:right;
+     margin: 3px;
+        //overflow: hidden;
+        i{
+height: 28px;
+    width: 50px;
+    padding: 5px;
+    border-right: 1px solid #c0c3c6;
+            }
+        input{
+            width: 35px;
+            padding: 0;
+            margin-left: 15px;
+            }
+        .alert{
+            border-color: red;
+        }
+     }
+}

@@ -1,10 +1,14 @@
 website-monitor{
     //position: relative;
    display:block;
-    background-color: #e6e6e6;
     margin:0, auto;
     padding:0;
     
+
+   section{
+    padding-bottom: 10px;
+    margin: 0;
+    background-color: #e6e6e6;
     .graph{
              width: 320px;
              text-align: center;
@@ -23,9 +27,9 @@ website-monitor{
             
             }
             .bar{
-              //  overflow: hidden;
-                padding:0;
-                border: 1px, solid, black;
+              //  overflow: hidden
+                padding:1px;
+                border: 1px solid #c0c3c6;
                 span{
                     float: left;
                 }
@@ -33,17 +37,18 @@ website-monitor{
             .success{
                 display: inline-block;
                 width:1px;
-                height:70px;
+                height:30px;
                 background-color:green;
             }
             .error{
                 display: inline-block;
                 width:1px;
-                height:70px;
+                height:30px;
                 background-color:#b30000;
             }
        
-    }             
+    } 
+  }            
 }             
               
               

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-//import { Control } from '@angular/common';
 /*
   Generated class for the Siren component.
 
@@ -13,21 +12,41 @@ import { Component } from '@angular/core';
 export class SirenComponent {
 
 
-dropCount:any = 5;
-//for drop count validation
-exp = /[\D]/;
-numLimit = 99;
-isNotAllowed = false;
+dropCount:number = 5; //DEFAULT DROP COUNT VALUE
+dropLimit:number = 100; //MAX DROP COUNT VALUE
+audio = new Audio(); //AUDIO/SOUND INSTANCE
+isMuted:boolean = false;
+isPlaying:boolean = false;
   constructor() {
-    console.log('Hello Siren Component');
+
+
+
+    // TO MAKE AUDIO PLAY SMOOTH
+    this.audio.src = "assets/audio/siren.mp3";
+    this.audio.load();
+    this.audio.onplay = () => {
+      this.isPlaying = true;
+     }
+    this.audio.onended = () => {
+      this.isPlaying = false;
+     }
     }
 
+// soundSiren() FUNCTION PRODUCES SOUND WHEN CALLED
+OnClickMute(){
+  this.isMuted = !this.isMuted
+  if ( this.isMuted == true ) this.audio.pause()
+  if ( this.isMuted == false ) this.audio.play()
+}
+//FUNCTION
+soundSiren(){
+    if ( this.isMuted == false && this.isPlaying == false ) {
+      this.audio.play();
+    }
+}
 
-
-
-
-//SIREN COMPONENT BEHAVIOR SECTION
-//for drop count input validation
+//SIREN COMPONENT VALIDATION SECTION
+  exp = /[\D]/;
   OnChangeValidation(e) {
 
       if ( e.target.value.match( this.exp ) ){
@@ -35,13 +54,9 @@ isNotAllowed = false;
         e.target.value = this.dropCount;
         return false
       }
-      if ( e.target.value > this.numLimit ){
-         alert('Max value allowed is '+ this.numLimit + '!')
-        e.target.value = this.numLimit;
+      if ( e.target.value > this.dropLimit ){
+         alert('Max value allowed is '+ this.dropLimit + '!')
+        e.target.value = this.dropLimit;
       }
-  console.log(e)
   }
-
-
-
 }

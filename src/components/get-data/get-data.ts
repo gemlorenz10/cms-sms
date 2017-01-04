@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 //Services
 import { HttpService } from '../../providers/http';
 
+//Components
+import { SirenComponent } from '../siren/siren';
 //import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/repeat';
@@ -25,13 +27,13 @@ export class GetDataComponent {
 //
 @Input() graphUrl:String;
 @Input() label:String;
+@ViewChild('sound') siren:SirenComponent; 
 
 //program variables
 barColor; // if true green else red
 responseData = [];
 httpServe:any;
 removeIndex;
-
  constructor( private httpService: HttpService ) {
      this.httpServe = httpService
   }
@@ -59,7 +61,7 @@ removeIndex;
       stamp : data.stamp,
       status : '200'
     }
-    this.handleResponse( success )  
+    this.handleResponse( success );
 }
 
   handleError( err: any ){
@@ -68,7 +70,8 @@ removeIndex;
       status : err.status
     }
     //send sms with error
-     this.handleResponse( error )
+    this.siren.soundSiren();
+     this.handleResponse( error );
   }
 //Handle the response from server
   handleResponse( data ){

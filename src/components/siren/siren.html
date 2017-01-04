@@ -1,12 +1,14 @@
- <div class="option">  
-                    <i class="fa fa-volume-up" aria-hidden="true"></i>
-                    <input type="text" 
-                      class="drop-count" 
-                      [class.alert]="isNotAllowed"
-                      [value]="dropCount" 
-        
-                      (change) = "OnChangeValidation($event)"
-                      />
+ <div class="option"> 
+    <i class="fa"
+        [class.fa-volume-up] = "!isMuted"
+        [class.fa-volume-off] = "isMuted"
+        (click)="OnClickMute()"
+        aria-hidden="true"></i>
+    <input type="text" 
+        class="drop-count" 
+        [class.alert]="isNotAllowed"
+        [value]="dropCount" 
+        (change) = "OnChangeValidation($event)"
+        />
 </div>
-
               <!--(keydown) = "OnChangeValidation($event)"-->

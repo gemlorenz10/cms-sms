@@ -2,7 +2,7 @@
 CMS mobile with sms
 # Angular 2 + Ionic CLI Hack
 ###Repository  
-[Aonic Repository]](https://github.com/thruthesky/aonic)
+[Aonic Repository](https://github.com/thruthesky/aonic)
 
 #DEVELOPMENT TOOLS
     - NodeJS

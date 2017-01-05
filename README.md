@@ -1,9 +1,9 @@
 # Center Monitoring System with SMS
 ###CMS mobile with sms alert.
     This is for Withcenter Inc, internal use.
-        * Web Server Monitoring
-        * Server Statistics Monitoring
-        * Internet Monitoring
+* Web Server Monitoring
+~~Server Statistics Monitoring~~
+~~Internet Monitoring~~
 # Angular 2 + Ionic CLI Hack
 ###Repository  
 [Aonic Repository](https://github.com/thruthesky/aonic)
@@ -24,8 +24,8 @@
 ##PLUGINS TO TEST
 
 ###Cordova SMS Plugin
-    [Npm link](https://www.npmjs.com/package/cordova-sms-plugin)
-    [Github Repository](https://github.com/cordova-sms/cordova-sms-plugin)
+[Npm link](https://www.npmjs.com/package/cordova-sms-plugin)
+[Github Repository](https://github.com/cordova-sms/cordova-sms-plugin)
 ###Cordova Ping Plugin
-    [Npm link](https://www.npmjs.com/package/cordova-plugin-ping)
-    [Github Repository](https://github.com/t1st3/cordova-plugin-ping)
+[Npm link](https://www.npmjs.com/package/cordova-plugin-ping)
+[Github Repository](https://github.com/t1st3/cordova-plugin-ping)

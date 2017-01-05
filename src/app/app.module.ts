@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { HttpService } from '../providers/http';
+import { SmsService } from '../providers/sms-service'
 
 import { AppComponent } from './app.component';
 import { GetDataComponent } from '../components/get-data/get-data'
@@ -34,6 +35,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot( appRoutes )
   ],
   bootstrap: [ AppComponent ],  
-  providers: [ HttpService ]
+  providers: [ HttpService, SmsService ]
 })
 export class AppModule {}

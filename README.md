@@ -5,7 +5,7 @@
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~
 
-This project is based on [Aonic Repository](https://github.com/thruthesky/aonic).
+This project is based from [Aonic Repository](https://github.com/thruthesky/aonic).
 
 ##Platforms Used
     - NodeJS

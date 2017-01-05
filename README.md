@@ -5,16 +5,16 @@
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~
 
-# Angular 2 + Ionic CLI Hack
+## Angular 2 + Ionic CLI Hack
 ###Repository  
 [Aonic Repository](https://github.com/thruthesky/aonic)
 
-#Platforms Used
+##Platforms Used
     - NodeJS
     - Angular2
     - Ionic-CLI
 
-#Running
+##Running
 ###Install Packages
     npm Install
 ###Testing

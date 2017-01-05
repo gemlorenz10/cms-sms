@@ -2,8 +2,9 @@
 ###CMS mobile with sms alert.
     This is for Withcenter Inc, internal use.
 * Web Server Monitoring
-~~Server Statistics Monitoring~~
-~~Internet Monitoring~~
+* ~~Server Statistics Monitoring~~
+* ~~Internet Monitoring~~
+
 # Angular 2 + Ionic CLI Hack
 ###Repository  
 [Aonic Repository](https://github.com/thruthesky/aonic)

@@ -8,7 +8,7 @@
 ###Repository  
 [Aonic Repository](https://github.com/thruthesky/aonic)
 
-#Platforms
+#Platforms Used
     - NodeJS
     - Angular2
     - Ionic-CLI

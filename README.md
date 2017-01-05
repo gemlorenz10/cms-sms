@@ -1,6 +1,5 @@
 # Center Monitoring System with SMS
-###CMS mobile with sms alert.
-    This is for Withcenter Inc, internal use.
+    CMS mobile with sms alert.This is for Withcenter Inc, internal use.
 * Web Server Monitoring
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~
@@ -11,6 +10,7 @@ This project is based from [Aonic Repository](https://github.com/thruthesky/aoni
     - NodeJS
     - Angular2
     - Ionic-CLI
+    - Cordova
 
 ##Running
 ###Install Packages
@@ -18,7 +18,8 @@ This project is based from [Aonic Repository](https://github.com/thruthesky/aoni
 ###Testing
     ionic serve
 
-
+##TO ADD
+Fail Count
 
 ##PLUGINS TO TEST
 

@@ -21,7 +21,7 @@ import 'rxjs/add/operator/expand';
 })
 export class GetDataComponent {
 //config
-  timeOut:number = 1000;  //timeout delay for request to retry in millisecond
+  timeOut:number = 2000;  //timeout delay for request to retry in millisecond
   barLength:number = 1000; // lenght of the bar: 290 max
 
 //
@@ -29,15 +29,13 @@ export class GetDataComponent {
 @Input() label:String;
 @ViewChild('sound') siren:SirenComponent; 
 
-//program variables
-barColor; // if true green else red
+barColor;
 responseData = [];
 httpServe:any;
 removeIndex;
  constructor( private httpService: HttpService ) {
      this.httpServe = httpService
   }
-//On initialize
  ngOnInit(){
 //if internet then handleInternet
 //if website then handleWebsite
@@ -62,6 +60,7 @@ removeIndex;
       status : '200'
     }
     this.handleResponse( success );
+    this.siren.counter = []; //VARIABLE FROM SIREN COMPONENT SET BACK TO 0
 }
 
   handleError( err: any ){
@@ -70,20 +69,17 @@ removeIndex;
       status : err.status
     }
     //send sms with error
-    this.siren.soundSiren();
+    this.siren.soundSiren(); // FROM SIREN COMPONENT
      this.handleResponse( error );
   }
 //Handle the response from server
   handleResponse( data ){
-    //append bar
     this.responseData.push( data );
     //limit bar lenght
     if (this.barLength > 285) this.barLength = 285;
     if ( this.responseData.length == this.barLength + 1 ){
       this.removeIndex = this.responseData.shift();
-      //console.log( 'must not equal to null or undefined', this.removeIndex )
           }
     this.removeIndex = null;
-   // console.log( this.removeIndex )
   }
 }

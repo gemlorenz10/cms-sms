@@ -4,7 +4,7 @@ CMS mobile with sms
 ###Repository  
 [Aonic Repository](https://github.com/thruthesky/aonic)
 
-#DEVELOPMENT TOOLS
+#Platforms Used
     - NodeJS
     - Angular2
     - Ionic-CLI

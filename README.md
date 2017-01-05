@@ -18,3 +18,14 @@
     npm Install
 ###Testing
     ionic serve
+
+
+
+##PLUGINS TO TEST
+
+###Cordova SMS Plugin
+    [Npm link](https://www.npmjs.com/package/cordova-sms-plugin)
+    [Github Repository](https://github.com/cordova-sms/cordova-sms-plugin)
+###Cordova Ping Plugin
+    [Npm link](https://www.npmjs.com/package/cordova-plugin-ping)
+    [Github Repository](https://github.com/t1st3/cordova-plugin-ping)

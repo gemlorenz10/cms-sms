@@ -22,12 +22,16 @@ isPlaying:boolean = false;
     this.audio.src = "assets/audio/siren.mp3";
     this.audio.load();
     this.audio.onplay = () => {
-      this.isPlaying = true;
+      this.isPlaying = true; // can't play sound
      }
     this.audio.onended = () => {
-      this.isPlaying = false;
+      this.isPlaying = false; // can play sound
      }
   }
+
+// 
+//           FUNCTIONS
+//
 
 OnClickMute(){
   this.isMuted = !this.isMuted
@@ -46,7 +50,7 @@ soundSiren(){
 
 //SIREN COMPONENT VALIDATION SECTION
   exp = /[\D]/;
-  OnChangeValidation(e) {
+  OnChangeValidation( e ) {
 
       if ( e.target.value.match( this.exp ) ){
         alert('Non-numeric characters not allowed!')
@@ -57,7 +61,7 @@ soundSiren(){
          alert('Max value allowed is '+ this.dropLimit + '!')
         e.target.value = this.dropLimit;
       }
-      this.dropCount = e.target.value; 
+      this.dropCount = e.target.value;
   }
 
 

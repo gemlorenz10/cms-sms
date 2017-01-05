@@ -60,7 +60,7 @@ removeIndex;
       status : '200'
     }
     this.handleResponse( success );
-    this.siren.counter = []; //VARIABLE FROM SIREN COMPONENT SET BACK TO 0
+    this.siren.counter = []; //variable from siren component set to 0.
 }
 
   handleError( err: any ){
@@ -68,14 +68,13 @@ removeIndex;
       stamp : err[ '_body' ].timeStamp,
       status : err.status
     }
-    //send sms with error
-    this.siren.soundSiren(); // FROM SIREN COMPONENT
-     this.handleResponse( error );
+    this.siren.soundSiren(); // play sound
+    this.handleResponse( error ); // red bar
   }
 //Handle the response from server
   handleResponse( data ){
     this.responseData.push( data );
-    //limit bar lenght
+    //limit bar lenght to 285
     if (this.barLength > 285) this.barLength = 285;
     if ( this.responseData.length == this.barLength + 1 ){
       this.removeIndex = this.responseData.shift();

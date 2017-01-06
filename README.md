@@ -29,3 +29,6 @@ Fail Count
 ###Cordova Ping Plugin
 [Npm link](https://www.npmjs.com/package/cordova-plugin-ping)
 [Github Repository](https://github.com/t1st3/cordova-plugin-ping)
+
+
+Testing on Mantis - Github Integration

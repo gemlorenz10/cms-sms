@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
-import { SmsService } from '../../providers/sms-service'
+//import { SmsService } from '../../providers/sms-service'
 
 @Component({
   selector: 'siren',
   templateUrl: 'siren.html',
-  providers:[SmsService]
+ // providers:[SmsService]
 })
 export class SirenComponent {
 
@@ -16,12 +16,12 @@ export class SirenComponent {
   isMuted:boolean = false;
   isPlaying:boolean = false;
 
-  sms;//--------------------------------------------------SMS TESTING
-  message = 'Hi Pogi'//------------------------------------SMS TESTING
-  number = '09214531886';//--------------------------------SMS TESTING
+  // sms;//--------------------------------------------------SMS TESTING
+  // message = 'Hi Pogi'//------------------------------------SMS TESTING
+  // number = '09214531886';//--------------------------------SMS TESTING
 
-    constructor( sms: SmsService ) {
-      this.sms = sms;  //---------------------------------------SMS TESTING
+    constructor(  ) {
+    //  this.sms = sms;  //---------------------------------------SMS TESTING
 
       // MAKE SOUND PLAY SMOOTH
       this.audio.src = "assets/audio/siren.mp3";
@@ -44,7 +44,7 @@ export class SirenComponent {
     if ( this.isMuted == true ) this.audio.pause()
     if ( this.isMuted == false ) this.audio.play()
     
-    this.sms.sendSms( this.number, this.message )//-------------SMS TESTING
+    //this.sms.sendSms( this.number, this.message )//-------------SMS TESTING
   }
 
   soundSiren(){

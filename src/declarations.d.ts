@@ -14,8 +14,8 @@
 declare module '*';
 
 
-declare module "sms" {
-    export = sms;
-}
-declare var sms: sms;
-interface sms { send } 
+// declare module "sms" {
+//     export = sms;
+// }
+// declare var sms: sms;
+// interface sms { send } 

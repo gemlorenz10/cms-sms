@@ -41,7 +41,8 @@
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-statusbar",
-    "cordova-plugin-splashscreen"
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-sms"
   ],
   "cordovaPlatforms": [],
   "description": "hack2: An Ionic project"

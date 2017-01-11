@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SmsService } from '../../providers/sms-service'
 
 //import { SmsService } from '../../providers/sms-service'
 
 @Component({
   selector: 'siren',
   templateUrl: 'siren.html',
- // providers:[SmsService]
+  providers:[SmsService]
 })
 export class SirenComponent {
-
+@Input() label:String;
   dropCount:number = 5; //DEFAULT DROP COUNT VALUE
   dropLimit:number = 5; //MAX DROP COUNT VALUE
   counter = [];
@@ -16,12 +17,11 @@ export class SirenComponent {
   isMuted:boolean = false;
   isPlaying:boolean = false;
 
-  // sms;//--------------------------------------------------SMS TESTING
-  // message = 'Hi Pogi'//------------------------------------SMS TESTING
-  // number = '09214531886';//--------------------------------SMS TESTING
+//Message you will sent and contact
+    numberTxt:string;
+    messageTxt:string;
 
-    constructor(  ) {
-    //  this.sms = sms;  //---------------------------------------SMS TESTING
+    constructor( private sms: SmsService,  ) {
 
       // MAKE SOUND PLAY SMOOTH
       this.audio.src = "assets/audio/siren.mp3";
@@ -35,24 +35,21 @@ export class SirenComponent {
         this.isPlaying = false; 
       }
     }
-
   // 
   //           FUNCTIONS
   //
   OnClickMute(){
     this.isMuted = !this.isMuted
-    if ( this.isMuted == true ) this.audio.pause()
-    if ( this.isMuted == false ) this.audio.play()
-    
-    //this.sms.sendSms( this.number, this.message )//-------------SMS TESTING
+    if ( this.isMuted == true ) this.audio.pause();
+    if ( this.isMuted == false ) this.audio.play();
   }
 
-  soundSiren(){
+  soundSiren( websiteName ){
       if ( this.isMuted == false && this.isPlaying == false ) {
         this.counter.push('1');
           if( this.counter.length >= this.dropCount ) this.audio.play();
           if( this.counter.length > this.dropLimit + 5 ) this.counter.shift();  //LIMIT THE LENGHT OF ARRAY
-          console.log( this.counter.length )
+          this.sendText( this.label );
       }
   }
   //
@@ -71,5 +68,12 @@ export class SirenComponent {
           e.target.value = this.dropLimit;
         }
         this.dropCount = e.target.value;
+    }
+
+    sendText( websiteName ){
+         this.numberTxt = '09152308483';
+         this.messageTxt =  websiteName + ' is down!';
+        this.sms.sendSms( this.numberTxt, this.messageTxt );
+       // alert( this.messageTxt + this.numberTxt )
     }
 }

@@ -21,9 +21,6 @@ This project is based from [Aonic Repository](https://github.com/thruthesky/aoni
     ionic platform add android
     ionic run android
 
-##TO ADD
-Fail Count
-
 ##PLUGINS TO TEST
 
 ###Cordova SMS Plugin
@@ -33,8 +30,11 @@ Fail Count
 [Npm link](https://www.npmjs.com/package/cordova-plugin-ping)
 [Github Repository](https://github.com/t1st3/cordova-plugin-ping)
 
-
-##ERROS on Running
+##TO-DO
+*toast component* - to be more transparent to user.
+            Show message if something happens in background.
+##Errors encountered on running
+###error: 1
         Error occurred during initialization of VM
         Could not reserve enough space for 2097152KB object heap
 
@@ -43,3 +43,12 @@ Fail Count
 
         Variable name:_JAVA_OPTIONS
         Variable value: -Xmx512M
+
+###error: 2
+        file:///android_asset/www/null 
+        Failed to load resource: net::ERR_FILE_NOT_FOUND
+
+###SOlution
+    reinstall android platform
+        ionic platform remove android
+        ionic platform add android

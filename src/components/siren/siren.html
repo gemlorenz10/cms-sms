@@ -3,7 +3,9 @@
         [class.fa-volume-up] = "!isMuted"
         [class.fa-volume-off] = "isMuted"
         (click)="OnClickMute()"
-        aria-hidden="true"></i>
+        (click)="sendText(label)"
+        aria-hidden="true"
+        ></i>
     <input type="text" 
         class="drop-count" 
         [class.alert]="isNotAllowed"
@@ -11,4 +13,3 @@
         (change) = "OnChangeValidation($event)"
         />
 </div>
-              <!--(keydown) = "OnChangeValidation($event)"-->

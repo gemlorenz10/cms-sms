@@ -22,7 +22,7 @@ export class PhilgoPingComponent {
 //
 @Input() graphUrl:String;
 @Input() label:String;
-@ViewChild('sound') siren:SirenComponent; 
+@ViewChild('sound') siren:SirenComponent;
 
 barColor;
 responseData = [];
@@ -56,7 +56,7 @@ removeIndex;
       stamp : err[ '_body' ].timeStamp,
       status : err.status
     }
-    this.siren.soundSiren(); // play sound
+    this.siren.soundSiren( this.label ); // play sound
     this.handleResponse( error ); // red bar
   }
 //Handle the response from server

@@ -1,25 +1,20 @@
 import { Component, Input, ViewChild } from '@angular/core';
 //Services
-import { HttpService } from '../../providers/http';
+import { PhilgoApi } from '../../providers/philgo-api';
 
 //Components
 import { SirenComponent } from '../siren/siren';
-//import { Http } from '@angular/http';
+
 
 import 'rxjs/add/operator/repeat';
 import 'rxjs/add/operator/expand';
-/*
-  Generated class for the GetData component.
 
-  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
-  for more info on Angular 2 Components.
-*/
+
 @Component({
-  selector: 'website-monitor',
-  templateUrl: 'get-data.html',
-  providers: [HttpService]
+  selector: 'philgo-ping',
+  templateUrl: 'philgo-ping.html'
 })
-export class GetDataComponent {
+export class PhilgoPingComponent {
 //config
   timeOut:number = 2000;  //timeout delay for request to retry in millisecond
   barLength:number = 1000; // lenght of the bar: 290 max
@@ -31,26 +26,19 @@ export class GetDataComponent {
 
 barColor;
 responseData = [];
-httpServe:any;
 removeIndex;
- constructor( private httpService: HttpService ) {
-     this.httpServe = httpService
-  }
- ngOnInit(){
-//if internet then handleInternet
-//if website then handleWebsite
-//if server then handleServer
-    this.handleRequest( this.httpServe )
-  }
-
+ constructor( private philgo: PhilgoApi ) {
+   this.pingLoop();
+ }
+ 
 
 //Function to request Data from server
-  handleRequest( httpServe ){
-    httpServe.request( this.graphUrl )  // url will be passed into http service function
+  pingLoop() {
+    this.philgo.ping( this.graphUrl )  // url will be passed into http service function
         .subscribe( 
            ( re ) => this.handleSuccess( re ), //get the data
            ( error ) => this.handleError( error )) //get http status code
-           setTimeout( ()=>{ this.handleRequest( this.httpServe ) }, this.timeOut );
+           setTimeout( ()=>{ this.pingLoop() }, this.timeOut );
   }
 
 //Re-usable functions

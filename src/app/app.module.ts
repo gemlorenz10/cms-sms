@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import { HttpService } from '../providers/http';
+import { PhilgoApi } from '../providers/philgo-api';
 //import { SmsService } from '../providers/sms-service'
 
 import { AppComponent } from './app.component';
-import { GetDataComponent } from '../components/get-data/get-data'
+import { PhilgoPingComponent } from '../components/philgo-ping/philgo-ping'
 import { SirenComponent } from '../components/siren/siren'
 
 
@@ -24,7 +25,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    GetDataComponent,
+    PhilgoPingComponent,
     SirenComponent,
     CmsPage,
    
@@ -32,9 +33,10 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     RouterModule.forRoot( appRoutes )
   ],
   bootstrap: [ AppComponent ],  
-  providers: [ HttpService ] //SmsService should be here
+  providers: [ PhilgoApi ] //SmsService should be here
 })
 export class AppModule {}

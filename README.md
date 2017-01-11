@@ -17,6 +17,9 @@ This project is based from [Aonic Repository](https://github.com/thruthesky/aoni
     npm Install
 ###Testing
     ionic serve
+###Testing on mobile
+    ionic platform add android
+    ionic run android
 
 ##TO ADD
 Fail Count
@@ -31,6 +34,12 @@ Fail Count
 [Github Repository](https://github.com/t1st3/cordova-plugin-ping)
 
 
-Testing on Mantis - Github Integration
+##ERROS on Running
+        Error occurred during initialization of VM
+        Could not reserve enough space for 2097152KB object heap
 
-Testing on Mantis - Github Integration
+###SOlution
+        Go to Start → Control Panel → System → Advanced system settings → advanced(tab) → Environment Variables → System Variables → New:
+
+        Variable name:_JAVA_OPTIONS
+        Variable value: -Xmx512M

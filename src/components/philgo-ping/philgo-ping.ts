@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 //Services
 import { PhilgoApi } from '../../providers/philgo-api';
-
+import { PingService } from '../../providers/ping-service'
 //Components
 import { SirenComponent } from '../siren/siren';
 
@@ -24,11 +24,13 @@ export class PhilgoPingComponent {
 @Input() label:String;
 @ViewChild('sound') siren:SirenComponent;
 
+
 barColor;
 responseData = [];
 removeIndex;
- constructor( private philgo: PhilgoApi ) {
+ constructor( private philgo: PhilgoApi, private ping: PingService ) {
    this.pingLoop();
+   this.connectionCheck( ping );
  }
  
 
@@ -69,4 +71,11 @@ removeIndex;
           }
     this.removeIndex = null;
   }
+
+  connectionCheck( ping ){
+    ping.pingNode();
+    setTimeout( () => this.connectionCheck( ping ), 2000 )
+  }
+
+
 }

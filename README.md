@@ -1,10 +1,9 @@
 # Center Monitoring System with SMS
     CMS mobile with sms alert.This is for Withcenter Inc, internal use.
+    This project is based on [Aonic Repository](https://github.com/thruthesky/aonic).
 * Web Server Monitoring
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~
-
-This project is based from [Aonic Repository](https://github.com/thruthesky/aonic).
 
 ##Platforms Used
     - NodeJS
@@ -12,9 +11,10 @@ This project is based from [Aonic Repository](https://github.com/thruthesky/aoni
     - Ionic-CLI
     - Cordova
 
-##Running
+##Environment
 ###Install Packages
     npm Install
+    npm install ionic-angular
 ###Testing
     ionic serve
 ###Testing on mobile
@@ -34,21 +34,21 @@ This project is based from [Aonic Repository](https://github.com/thruthesky/aoni
 *toast component* - to be more transparent to user.
             Show message if something happens in background.
 ##Errors encountered on running
-###error: 1
+###ERROR: 1
         Error occurred during initialization of VM
         Could not reserve enough space for 2097152KB object heap
 
-###SOlution
+###Solution
         Go to Start → Control Panel → System → Advanced system settings → advanced(tab) → Environment Variables → System Variables → New:
 
         Variable name:_JAVA_OPTIONS
         Variable value: -Xmx512M
 
-###error: 2
+###ERROR: 2
         file:///android_asset/www/null 
         Failed to load resource: net::ERR_FILE_NOT_FOUND
 
-###SOlution
+###Solution
     reinstall android platform
         ionic platform remove android
         ionic platform add android

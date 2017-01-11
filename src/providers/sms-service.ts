@@ -5,13 +5,7 @@ declare let sms;
 @Injectable()
 export class SmsService {
 
-//   numberTxt: string = '09152308483';
-//   messageTxt: string = 'Server is down!!';
-
     sendSms( number, message ) {
-
-       // alert("number=" + this.numberTxt + ", message= " + this.messageTxt);
-
         //CONFIGURATION
         var options = {
             replaceLineBreaks: false, // true to replace \n by a new line, false by default

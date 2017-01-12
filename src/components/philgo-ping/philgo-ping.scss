@@ -33,20 +33,20 @@ philgo-ping {
                 span{
                     float: left;
                 }
-            }
-            .success{
-                display: inline-block;
-                width:1px;
-                height:30px;
-                background-color:green;
-            }
-            .error{
-                display: inline-block;
-                width:1px;
-                height:30px;
-                background-color:#b30000;
-            }
-       
+                .success{
+                    display: inline-block;
+                    width:1px;
+                    height:30px;
+                    background-color:#009938;
+                }
+                .error{
+                    display: inline-block;
+                    width:1px;
+                    height:30px;
+                    background-color:#b30000;
+                }
+        }
+
     } 
   }            
 }             

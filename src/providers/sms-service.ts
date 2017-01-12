@@ -19,6 +19,6 @@ export class SmsService {
           () => { this.success(); },
           (e) => { this.error(e); } );
     }
-     success() { alert('Message sent successfully'); };
-       error(e) { alert('Message Failed:' + e); };
+     success() { console.log('Message sent successfully'); };
+       error(e) { console.log('Message not sent!'); };
     }

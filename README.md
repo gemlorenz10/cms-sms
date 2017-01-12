@@ -1,6 +1,6 @@
 # Center Monitoring System with SMS
     CMS mobile with sms alert.This is for Withcenter Inc, internal use.
-    This project is based on [Aonic Repository](https://github.com/thruthesky/aonic).
+This project is based on [Aonic Repository](https://github.com/thruthesky/aonic).
 * Web Server Monitoring
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~

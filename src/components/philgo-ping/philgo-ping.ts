@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 //Services
 import { PhilgoApi } from '../../providers/philgo-api';
-import { PingService } from '../../providers/ping-service'
+//import { PingService } from '../../providers/ping-service'
 //Components
 import { SirenComponent } from '../siren/siren';
 
@@ -12,7 +12,8 @@ import 'rxjs/add/operator/expand';
 
 @Component({
   selector: 'philgo-ping',
-  templateUrl: 'philgo-ping.html'
+  templateUrl: 'philgo-ping.html',
+  providers:[SirenComponent]
 })
 export class PhilgoPingComponent {
 //config
@@ -28,9 +29,9 @@ export class PhilgoPingComponent {
 barColor;
 responseData = [];
 removeIndex;
- constructor( private philgo: PhilgoApi, private ping: PingService ) {
+ constructor( private philgo: PhilgoApi,
+              private sirenComponent: SirenComponent ) {
    this.pingLoop();
-   this.connectionCheck( ping );
  }
  
 
@@ -50,16 +51,30 @@ removeIndex;
       status : '200'
     }
     this.handleResponse( success );
-    this.siren.counter = []; //variable from siren component set to 0.
+    this.sirenComponent.counter = []; //variable from siren component set to 0.
 }
 
-  handleError( err: any ){
-    let error = {
-      stamp : err[ '_body' ].timeStamp,
-      status : err.status
+  handleError( err ){
+    let error = {}
+    if (err.status == 0 || err.status == 'undefined'){
+      error = {
+        server : this.label,
+        url: 'No URL found in response',
+        message : 'No Message found in response, Either Webserver or Monitor\'s Internet is down!',
+        status : err.status
+        }
+    }else{
+      error = {
+        server : this.label,
+        url: err.url,
+        message : err.statusText,
+        status : err.status
+        }
     }
-    this.siren.soundSiren( this.label ); // play sound
+    this.sirenComponent.soundSiren( error );
     this.handleResponse( error ); // red bar
+
+    console.log( error )
   }
 //Handle the response from server
   handleResponse( data ){
@@ -71,11 +86,4 @@ removeIndex;
           }
     this.removeIndex = null;
   }
-
-  connectionCheck( ping ){
-    ping.pingNode();
-    setTimeout( () => this.connectionCheck( ping ), 2000 )
-  }
-
-
 }

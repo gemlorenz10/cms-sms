@@ -9,7 +9,7 @@
     if ( window.cordova ) {
       if ( typeof IonicDevServer != 'undefined' ) path = '/'; // live reload. source comes from desktop computer.
       else path = '/android_asset/www/'; // For mobile app, no none will reload. so, <base href=''> is fine. overwrite emtpy base href to '/' for web.
-    }
+    } 
     else path = '/'; // For web, change <base href=''> to <base href='/'> for reloading. 
     var theBase = document.getElementById("baseHref");
     theBase.href = path;
@@ -20,8 +20,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
-
-
 
 
 

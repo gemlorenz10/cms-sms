@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { PhilgoApi } from '../providers/philgo-api';
-//import { SmsService } from '../providers/sms-service'
+import { SmsService } from '../providers/sms-service'
 import { PingService } from '../providers/ping-service';
 
 import { AppComponent } from './app.component';
@@ -38,6 +38,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot( appRoutes )
   ],
   bootstrap: [ AppComponent ],  
-  providers: [ PhilgoApi, PingService ] //SmsService should be here
+  providers: [ PhilgoApi, PingService, SmsService ] //SmsService should be here
 })
 export class AppModule {}

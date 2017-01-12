@@ -12,10 +12,3 @@
   https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
 */
 declare module '*';
-
-
-// declare module "sms" {
-//     export = sms;
-// }
-// declare var sms: sms;
-// interface sms { send } 

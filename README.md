@@ -29,6 +29,8 @@ This project is based on [Aonic Repository](https://github.com/thruthesky/aonic)
 ###Cordova Ping Plugin
 [Npm link](https://www.npmjs.com/package/cordova-plugin-ping)
 [Github Repository](https://github.com/t1st3/cordova-plugin-ping)
+###Cordova Network info Plugin
+[Github Repository](https://github.com/apache/cordova-plugin-network-information)
 
 ##TO-DO
 *toast component* - to be more transparent to user.

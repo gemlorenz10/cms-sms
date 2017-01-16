@@ -2,10 +2,11 @@
     CMS mobile with sms alert.This is for Withcenter Inc, internal use.
 This project is based on [Aonic Repository](https://github.com/thruthesky/aonic).
 * Web Server Monitoring 
-        `<philgo-ping
+        ```HTML
+        <philgo-ping
         [label] = "'Gem Desktop'"
         [graphUrl] = "'http://your.website.com'">`
-
+        ```
 </philgo-ping>
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~
@@ -26,9 +27,9 @@ This project is based on [Aonic Repository](https://github.com/thruthesky/aonic)
     ionic platform add android
     ionic run android
 
-##PLUGINS TO TEST
+##PLUGINS TO ADD
 
-###Cordova SMS Plugin
+###Cordova SMS Plugin( Added )
 [Npm link](https://www.npmjs.com/package/cordova-sms-plugin)
 [Github Repository](https://github.com/cordova-sms/cordova-sms-plugin)
 ###Cordova Ping Plugin

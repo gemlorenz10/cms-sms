@@ -37,6 +37,9 @@ responseData = [];
   ngOnInit() {
         this.pingLoop();
         }
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
   //Function to request Data from server
   subscription;
   pingLoop() {
@@ -93,8 +96,6 @@ responseData = [];
         }
 
   } 
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
-  }
+
 
 }

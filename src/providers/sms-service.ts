@@ -21,13 +21,10 @@ fail:boolean = false;
         };
 
        return sms.send(number, message, options,
-          () => { this.successEmitter(); },
-          (e) => { this.errorEmitter(e); } );  
+          () => { this.sendEmitter({'sent': true, 'fail': false}); },
+          (e) => { this.sendEmitter({'sent': false, 'fail': true}); } );  
     }
-    successEmitter() { 
-           return this.show.emit({'sent': true, 'fail': false});
-        };
-    errorEmitter(e) { 
-           return this.show.emit({'sent': true, 'fail': false});
-        };
+    sendEmitter(e) { 
+           return this.show.emit(e);
+        }
     }

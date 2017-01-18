@@ -36,6 +36,7 @@ export class SirenComponent {
         this.audio.onended = () => {
           this.isPlaying = false; 
         }
+
     }
   // 
   //           FUNCTIONS
@@ -60,6 +61,7 @@ export class SirenComponent {
     
  //   console.log( 'count :', this.counter );
    // console.log( 'playing? :',  this.isPlaying );
+
 }
   //
   //SIREN COMPONENT VALIDATION SECTION
@@ -86,9 +88,9 @@ export class SirenComponent {
     dontSend:boolean = false;
     tick:number = 1; //in seconds
     messageAlert;
-        sendText( res, count ){
+    sendText( res, count ){
 
-        this.numberTxt = ['09152308483','09166924432'];
+        this.numberTxt = ['09152308483'];
         this.messageTxt =  res.server + ' is down!\n' +
                             'Drop Count: ' + count + '\n' +
                             'Status Code: ' +res.status + '\n' +
@@ -101,7 +103,7 @@ export class SirenComponent {
         });    
         
       //  console.log( 'this is sendText()', this.messageTxt );
-
+        this.sms.show.subscribe( data => this.handleSms( data ) );
          
     }
 
@@ -135,7 +137,7 @@ export class SirenComponent {
 
 
     handleSms( e ){
-        console.log( e );
+        console.log( e )
     }
 
     success(){

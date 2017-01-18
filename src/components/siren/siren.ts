@@ -18,7 +18,7 @@ export class SirenComponent {
   audio = new Audio();
   isMuted:boolean = false;
   isPlaying:boolean = false;
-
+  fromSms:SmsService;
 //Message you will sent and contact
     numberTxt;
     messageTxt:string;
@@ -50,25 +50,16 @@ export class SirenComponent {
   //counter = [];
   counter = 0;
   soundSiren( err ){
-
-    // this.counter.push('1');
-    // if ( this.isMuted == false && this.isPlaying == false ) {
-    //     if( this.counter.length == this.dropCount + 1 ) this.audio.play();
-    //     console.log('should be playing');
-    // }   
-
-    // if( this.counter.length >= this.dropCount + 1 ) this.sendNow( err );
-    
-    // if( this.counter.length >= this.dropCount + 1 ) this.counter.shift();
+        console.log( this.dropCount );
     this.counter++
     if ( this.isMuted == false && this.isPlaying == false ) {
-        if( this.counter == this.dropCount ) this.audio.play();
+        if( this.counter >= this.dropCount ) this.audio.play();
         console.log('should be playing');
     }  
     if( this.counter >= this.dropCount ) this.sendNow( err, this.counter );
     
-    console.log( 'count :', this.counter );
-    console.log( 'playing? :',  this.isPlaying );
+ //   console.log( 'count :', this.counter );
+   // console.log( 'playing? :',  this.isPlaying );
 }
   //
   //SIREN COMPONENT VALIDATION SECTION
@@ -86,7 +77,7 @@ export class SirenComponent {
             e.target.value = this.dropLimit;
         }
         this.dropCount = e.target.value;
-        
+
     }
 
 
@@ -94,21 +85,22 @@ export class SirenComponent {
     sendCount:number = 0;
     dontSend:boolean = false;
     tick:number = 1; //in seconds
-    sendText( res, count ){
+    messageAlert;
+        sendText( res, count ){
 
         this.numberTxt = ['09152308483','09166924432'];
         this.messageTxt =  res.server + ' is down!\n' +
                             'Drop Count: ' + count + '\n' +
                             'Status Code: ' +res.status + '\n' +
-                            'Message: \n' + res.message + '\n' +
+                            'Message:' + res.message + '\n' +
                             'Check URL: ' + res.url + '\n' +
                             'Sent by: CMS Withcenter, Inc.';
 
         this.numberTxt.forEach( val => {
               this.sms.sendSms( val, this.messageTxt );            
         });    
-        alert( this.messageTxt + this.numberTxt )
-         console.log( 'this is sendText()', this.messageTxt );
+        
+      //  console.log( 'this is sendText()', this.messageTxt );
 
          
     }
@@ -135,10 +127,15 @@ export class SirenComponent {
             this.sendCount++;
             this.dontSend = true;
             setTimeout( () =>  this.dontSend = false , this.tick * 1000);
-            console.log('This is sendnow()', this.tick);
-            console.log('This is sendCount', this.sendCount);     
+            // console.log('This is sendnow()', this.tick);
+            // console.log('This is sendCount', this.sendCount);     
         }
 
+    }
+
+
+    handleSms( e ){
+        console.log( e );
     }
 
     success(){

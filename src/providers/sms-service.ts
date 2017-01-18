@@ -1,9 +1,13 @@
 
-import { Injectable } from '@angular/core';
-declare let sms;
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
+declare let sms;
 @Injectable()
 export class SmsService {
+sent:boolean = false;
+fail:boolean = false;
+
+@Output() show = new EventEmitter();
 
     sendSms( number, message ) {
         if ( typeof sms == 'undefined' ) return console.error('sms is undefined. did you install sms plugin? or running in web browser?');
@@ -17,9 +21,13 @@ export class SmsService {
         };
 
        return sms.send(number, message, options,
-          () => { this.success(); },
-          (e) => { this.error(e); } );
+          () => { this.successEmitter(); },
+          (e) => { this.errorEmitter(e); } );  
     }
-     success() { console.log('Message sent successfully'); };
-       error(e) { console.log('Message not sent!'); };
+    successEmitter() { 
+           return this.show.emit({'sent': true, 'fail': false});
+        };
+    errorEmitter(e) { 
+           return this.show.emit({'sent': true, 'fail': false});
+        };
     }

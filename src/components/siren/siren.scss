@@ -5,10 +5,10 @@ siren {
      margin: 3px;
         //overflow: hidden;
         i{
-height: 28px;
-    width: 50px;
-    padding: 5px;
-    border-right: 1px solid #c0c3c6;
+            height: 28px;
+            width: 50px;
+            padding: 5px;
+            border-right: 1px solid #c0c3c6;
             }
         input{
             width: 35px;
@@ -18,5 +18,13 @@ height: 28px;
         .alert{
             border-color: red;
         }
+     }
+
+     .alert{
+        position: absolute;
+        margin: 0 auto;
+        opacity: 0.8;
+        margin-top: -5px;
+        margin-left: -1px;
      }
 }

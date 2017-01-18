@@ -38,9 +38,10 @@ responseData = [];
         this.pingLoop();
         }
   //Function to request Data from server
+  subscription;
   pingLoop() {
     let url = this.graphUrl + '&dummy=' + (new Date).getTime();
-        this.philgo.ping( url )  // url will be passed into http service function
+     this.subscription = this.philgo.ping( url )  // url will be passed into http service function
                     .timeout(this.timeOut)
                     .subscribe( 
                       ( re ) => this.handleSuccess( re ), //get the data
@@ -92,6 +93,8 @@ responseData = [];
         }
 
   } 
-
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
 
 }

@@ -6,6 +6,7 @@ declare let sms;
 export class SmsService {
 
     sendSms( number, message ) {
+        if ( typeof sms == 'undefined' ) return console.error('sms is undefined. did you install sms plugin? or running in web browser?');
         //CONFIGURATION
         var options = {
             replaceLineBreaks: false, // true to replace \n by a new line, false by default

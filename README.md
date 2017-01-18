@@ -11,6 +11,13 @@ This project is based on [Aonic Repository](https://github.com/thruthesky/aonic)
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~
 
+
+## TODO
+
+1. Double check - set timeout on http get query : 10s
+2. Make a unique address on each request.
+
+
 ##Platforms Used
     - NodeJS
     - Angular2

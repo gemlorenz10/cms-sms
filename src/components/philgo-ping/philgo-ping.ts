@@ -39,8 +39,8 @@ responseData = [];
         }
   //Function to request Data from server
   pingLoop() {
-
-        this.philgo.ping( this.graphUrl )  // url will be passed into http service function
+    let url = this.graphUrl + '&dummy=' + (new Date).getTime();
+        this.philgo.ping( url )  // url will be passed into http service function
                     .timeout(this.timeOut)
                     .subscribe( 
                       ( re ) => this.handleSuccess( re ), //get the data

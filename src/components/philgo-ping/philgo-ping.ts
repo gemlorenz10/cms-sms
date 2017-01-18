@@ -17,8 +17,8 @@ import 'rxjs/add/operator/timeout';
 })
 export class PhilgoPingComponent {
 //config
-  timeOut:number = 1000;  //timeout delay for request to retry in millisecond
-  barLength:number = 1000; // lenght of the bar: 290 max
+  timeOut:number = 5000;  //request timeout and setTimeout in pingloop()
+  barLength:number = 290; // lenght of the bar: 285 max
 
 //
 @Input() graphUrl:String;
@@ -28,18 +28,20 @@ export class PhilgoPingComponent {
 
 barColor;
 responseData = [];
- constructor( private philgo: PhilgoApi, private sirenComponent: SirenComponent ){
-    
-    this.pingLoop();
+ constructor( private philgo: PhilgoApi, 
+              private sirenComponent: SirenComponent ){
 
- }
- 
 
-//Function to request Data from server
+
+}
+  ngOnInit() {
+        this.pingLoop();
+        }
+  //Function to request Data from server
   pingLoop() {
 
         this.philgo.ping( this.graphUrl )  // url will be passed into http service function
-                 // .timeout(this.timeOut)
+                    .timeout(this.timeOut)
                     .subscribe( 
                       ( re ) => this.handleSuccess( re ), //get the data
                       ( error ) => this.handleError( error )) //get http status code
@@ -52,35 +54,31 @@ responseData = [];
 
         let success = {
           stamp : data.stamp,
-          status : '200'
+          status : '200'    // static value for status code when success.
         }
         this.handleResponse( success );
-        this.sirenComponent.counter = []; //variable from siren component set to 0.
-        this.sirenComponent.sendCount = 0;       // Reset send pattern when ..
-        this.sirenComponent.dontSend = false;  //  Successful
+        this.siren.success();
 
   }
 
   handleError( err ){
 
         let error = {}
-        if ( err.status == 0 ){
+        if ( err.status == 0 || err.status == undefined ){
           error = { server : this.label,
                     url: 'No URL found in response body',
                     message :
-                    `No Message found in response body. 
-                    Check the server to server to know the problem.`,
-                    status : err.status };
+                    `REQUEST TIME-OUT!!
+                    Check the server to know the problem.`,
+                    status : '0' };
         } else {
           error = { server : this.label,
                     url: err.url,
                     message : err.statusText,
                     status : err.status };
         }
-        this.siren.soundSiren( error ); // as a child function
-        // this.sirenComponent.sendPattern( error ); // as a provider
-        this.handleResponse( error ); // red bar
-        console.log( 'From parent COmponent', error )
+        this.siren.soundSiren( error ); // function from child compoment SirenComponent
+        this.handleResponse( error ); // append red bar
 
     }
   //Handle the response from server

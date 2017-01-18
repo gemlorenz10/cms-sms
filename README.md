@@ -5,7 +5,7 @@ This project is based on [Aonic Repository](https://github.com/thruthesky/aonic)
         ```HTML
         <philgo-ping
         [label] = "'Gem Desktop'"
-        [graphUrl] = "'http://your.website.com'">`
+        [graphUrl] = "'http://your.website.com'">
         ```
 </philgo-ping>
 * ~~Server Statistics Monitoring~~

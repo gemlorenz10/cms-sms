@@ -2,18 +2,19 @@ import { Component, Input } from '@angular/core';
 import { SmsService } from '../../providers/sms-service'
 
 //import { SmsService } from '../../providers/sms-service'
-
 @Component({
   selector: 'siren',
   templateUrl: 'siren.html',
   providers:[SmsService]
 })
+ //declare let media;
 export class SirenComponent {
     
   @Input() label:String;
   dropCount:number = 5; //DEFAULT DROP COUNT VALUE
   dropLimit:number = 50; //MAX DROP COUNT VALUE
-  counter = [];
+
+ 
   audio = new Audio();
   isMuted:boolean = false;
   isPlaying:boolean = false;
@@ -46,18 +47,29 @@ export class SirenComponent {
       if ( this.isMuted == false ) this.audio.play();
   
 }
-
+  //counter = [];
+  counter = 0;
   soundSiren( err ){
 
-    this.counter.push('1');
-    if ( this.isMuted == false && this.isPlaying == false ) {
-        if( this.counter.length >= this.dropCount ) this.audio.play();
-    }   
-    if( this.counter.length > this.dropLimit + 5 ) this.counter.shift();
- //   console.log('counter', this.counter.length);
-    if( this.counter.length >= this.dropCount ) this.sendPattern( err );
+    // this.counter.push('1');
+    // if ( this.isMuted == false && this.isPlaying == false ) {
+    //     if( this.counter.length == this.dropCount + 1 ) this.audio.play();
+    //     console.log('should be playing');
+    // }   
 
- }
+    // if( this.counter.length >= this.dropCount + 1 ) this.sendNow( err );
+    
+    // if( this.counter.length >= this.dropCount + 1 ) this.counter.shift();
+    this.counter++
+    if ( this.isMuted == false && this.isPlaying == false ) {
+        if( this.counter == this.dropCount ) this.audio.play();
+        console.log('should be playing');
+    }  
+    if( this.counter >= this.dropCount ) this.sendNow( err, this.counter );
+    
+    console.log( 'count :', this.counter );
+    console.log( 'playing? :',  this.isPlaying );
+}
   //
   //SIREN COMPONENT VALIDATION SECTION
   //
@@ -77,12 +89,18 @@ export class SirenComponent {
         
     }
 
-    sendText( res ){
+
+
+    sendCount:number = 0;
+    dontSend:boolean = false;
+    tick:number = 1; //in seconds
+    sendText( res, count ){
 
         this.numberTxt = ['09152308483','09166924432'];
         this.messageTxt =  res.server + ' is down!\n' +
+                            'Drop Count: ' + count + '\n' +
                             'Status Code: ' +res.status + '\n' +
-                            'Message: \n' + res.message + '\n\n' +
+                            'Message: \n' + res.message + '\n' +
                             'Check URL: ' + res.url + '\n' +
                             'Sent by: CMS Withcenter, Inc.';
 
@@ -90,36 +108,45 @@ export class SirenComponent {
               this.sms.sendSms( val, this.messageTxt );            
         });    
         alert( this.messageTxt + this.numberTxt )
-  //     console.log( res );
+         console.log( 'this is sendText()', this.messageTxt );
 
+         
     }
 
-    sendCount:number = 0;
-    dontSend:boolean = false;
-    tick:number = 1; //in seconds
-    sendPattern( res ){
+    sendNow( res, count ){
         
         if ( this.dontSend == true ) return;
 
-        if ( this.sendCount == 0 ) {
-            this.sendCount++;
-        }
-        else if ( this.sendCount <= 2 ) {
-            this.sendCount++;
+        if ( this.sendCount <= 2 ) {
+            //this.sendCount++;
             this.tick = 60; // 1min
         }
         else if ( this.sendCount == 3) {
-            this.sendCount++;
+            //this.sendCount++;
             this.tick = 300; // 5 mins
         }
         else if ( this.sendCount > 3 ) {
-            this.sendCount++;
+            //this.sendCount++;
             this.tick = 600; //10 mins
         }
-        this.dontSend = true;        
-        this.sendText( res );
-        setTimeout( () =>  this.dontSend = false , this.tick * 1000);
-    
+
+        if( this.dontSend == false ){ 
+            this.sendText( res, count );
+            this.sendCount++;
+            this.dontSend = true;
+            setTimeout( () =>  this.dontSend = false , this.tick * 1000);
+            console.log('This is sendnow()', this.tick);
+            console.log('This is sendCount', this.sendCount);     
+        }
+
+    }
+
+    success(){
+
+        this.counter = 0; //variable from siren component
+        this.sendCount = 0;       // Reset send pattern when ..
+        this.dontSend = false;  //  Successful
+
     }
 
 }

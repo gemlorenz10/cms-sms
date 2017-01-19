@@ -54,21 +54,24 @@ responseData = [];
   //
   //  Function if url succeed
   //
+  succesCount = 0;
   handleSuccess( data ){
-
+        
+        this.succesCount++
         let success = {
           stamp : data.stamp,
           status : '200'    // static value for status code when success.
         }
         this.handleResponse( success );
-        this.siren.success();
-
+        if( this.succesCount == this.siren.dropCount ) this.siren.success(); //only considered good when successCount meets drop count
+        // console.log( 'this is drop count', this.siren.dropCount );
   }
   //
   //  Function if url fail
   //
   handleError( err ){
-
+        
+        this.succesCount = 0; // reset successCount when there is an error.
         let error = {}
         if ( err.status == 0 || err.status == undefined ){
           error = { server : this.label,
@@ -100,6 +103,5 @@ responseData = [];
         }
 
   } 
-
 
 }

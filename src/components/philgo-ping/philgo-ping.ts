@@ -13,7 +13,7 @@ import 'rxjs/add/operator/timeout';
 })
 export class PhilgoPingComponent {
 //config
-timeOut:number = 1000;  //request timeout and setTimeout in pingloop()
+timeOut:number = 10000;  //request timeout and setTimeout in pingloop()
 barLength:number = 290; // lenght of the bar: 285 max
 
 @Input() graphUrl:String;
@@ -25,8 +25,6 @@ barColor;
 responseData = [];
  constructor( private philgo: PhilgoApi, 
               private sirenComponent: SirenComponent ){
-
-
 
   }
   ngOnInit() {

@@ -10,7 +10,7 @@ import { SmsService } from '../../providers/sms-service'
 export class SirenComponent {
     
   @Input() label:String;
-  dropCount:number = 1; //DEFAULT DROP COUNT VALUE
+  dropCount:number = 5; //DEFAULT DROP COUNT VALUE
   dropLimit:number = 50; //MAX DROP COUNT VALUE
 
  

@@ -38,8 +38,8 @@ responseData = [];
   //
   subscription;
   pingLoop() {
-   // let url = this.graphUrl + '&dummy=' + (new Date).getTime();
-    let url = this.graphUrl;
+    let url = this.graphUrl + '&dummy=' + (new Date).getTime();
+    //let url = this.graphUrl;
      this.subscription = this.philgo.ping( url )  // url will be passed into http service function
                     .timeout(this.timeOut)
                     .subscribe( 

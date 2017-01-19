@@ -22,7 +22,7 @@ fail:boolean = false;
 
        return sms.send(number, message, options,
           () => { this.sendEmitter({'sent': true, 'fail': false}); },
-          (e) => { this.sendEmitter({'sent': false, 'fail': true}); } );  
+          (err) => { this.sendEmitter({'sent': false, 'fail': true}); } );  
     }
     sendEmitter(e) { 
            return this.show.emit(e);

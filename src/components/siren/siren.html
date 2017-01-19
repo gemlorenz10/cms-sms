@@ -10,8 +10,26 @@
         [class.alert]="isNotAllowed"
         [value]="dropCount" 
         (change) = "OnChangeValidation($event)"
+        (keydown) = "OnKeyDownValidation($event)"
+        (focus) = "OnFocusValidation($event)"
+        (blur)="OnBlurValidation($event)"
         />
 </div>
-<div class="alert alert-success" (show) = "handleSms($event)" hidden>
-  <strong>Server fail!</strong><br> Message successfully sent to admin.
+
+<!--
+    Alert Messages
+-->
+<div class="alert alert-success transparent success" 
+     *ngIf="messageAlert == true" >
+   Message sent to admin.
+</div>
+
+<div class="alert alert-danger transparent  fail"
+     *ngIf="messageFailAlert == true" >
+   Message not sent to admin.
+</div>
+
+<div class="alert alert-info drop-count info"
+      *ngIf="showAlertDropCount == true" >
+    Change number of drop count.
 </div>

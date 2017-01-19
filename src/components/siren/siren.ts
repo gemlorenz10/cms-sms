@@ -1,31 +1,26 @@
 import { Component, Input } from '@angular/core';
 import { SmsService } from '../../providers/sms-service'
 
-//import { SmsService } from '../../providers/sms-service'
 @Component({
   selector: 'siren',
   templateUrl: 'siren.html',
   providers:[SmsService]
 })
- //declare let media;
+
 export class SirenComponent {
     
   @Input() label:String;
-  dropCount:number = 5; //DEFAULT DROP COUNT VALUE
+  dropCount:number = 1; //DEFAULT DROP COUNT VALUE
   dropLimit:number = 50; //MAX DROP COUNT VALUE
 
  
   audio = new Audio();
-  isMuted:boolean = false;
   isPlaying:boolean = false;
-  fromSms:SmsService;
+  
 //Message you will sent and contact
-    numberTxt;
-    messageTxt:string;
 
     constructor( private sms: SmsService,  ) {
 
-        // MAKE SOUND PLAY SMOOTH
         this.audio.src = "assets/audio/siren.mp3";
         this.audio.load();
         // can't play sound
@@ -39,8 +34,9 @@ export class SirenComponent {
 
     }
   // 
-  //           FUNCTIONS
+  //  Function that disables sound.
   //
+  isMuted:boolean = false;
   OnClickMute(){
 
       this.isMuted = !this.isMuted;
@@ -48,25 +44,27 @@ export class SirenComponent {
       if ( this.isMuted == false ) this.audio.play();
   
 }
-  //counter = [];
+  //
+  //    Function that plays sound and send sms.
+  //
   counter = 0;
   soundSiren( err ){
-        console.log( this.dropCount );
+    
     this.counter++
     if ( this.isMuted == false && this.isPlaying == false ) {
         if( this.counter >= this.dropCount ) this.audio.play();
-        console.log('should be playing');
+        //console.log('should be playing');
     }  
     if( this.counter >= this.dropCount ) this.sendNow( err, this.counter );
     
- //   console.log( 'count :', this.counter );
-   // console.log( 'playing? :',  this.isPlaying );
+        // console.log( 'count :', this.counter );
+        // console.log( 'playing? :',  this.isPlaying );
 
 }
   //
-  //SIREN COMPONENT VALIDATION SECTION
+  //    Functions to improve user experience.
   //
-  exp = /[\D]/;
+    exp = /[\D]/;
     OnChangeValidation( e ) {
 
         if ( e.target.value.match( this.exp ) ){
@@ -81,13 +79,26 @@ export class SirenComponent {
         this.dropCount = e.target.value;
 
     }
+    OnKeyDownValidation( e ){
+        if ( e.code == 'Enter' ) e.target.blur(); // PC
+        if ( e.key == 'Enter' ) e.target.blur();    //Android 5.1.1
+        if ( e.keyCode == 13 || e.keyIdentifier == 'Enter') e.target.blur(); // Android 4.4.2
+      // console.log( e )
+    }
+    showAlertDropCount:boolean;
+    OnFocusValidation( e ){
+        if ( e.type == 'focus' ) this.showAlertDropCount = true;
+       // console.log( e );
+    }
+    OnBlurValidation( e ){
+        this.showAlertDropCount = false;
+    }
 
-
-
-    sendCount:number = 0;
-    dontSend:boolean = false;
-    tick:number = 1; //in seconds
-    messageAlert;
+    //
+    //  Function that uses sms service to send sms
+    //
+    numberTxt;
+    messageTxt:string;
     sendText( res, count ){
 
         this.numberTxt = ['09152308483'];
@@ -102,49 +113,74 @@ export class SirenComponent {
               this.sms.sendSms( val, this.messageTxt );            
         });    
         
-      //  console.log( 'this is sendText()', this.messageTxt );
-        this.sms.show.subscribe( data => this.handleSms( data ) );
-         
-    }
+       // console.log( this.messageTxt );
+        this.sms.show.subscribe( data => this.handleSmsEvent( data ) ); //wait for SmsService emit
+       // console.log( 'next send in', this.tick );
+        this.sendCount++;   
+        console.log('Message was sent');                        //
+        console.log('Message sent = ', this.sendCount);            // for testing
+        this.dontSend = true;
 
+    }
+    //
+    //  Function that determines when to send sms or call sendText().
+    //
+    sendCount:number = 0;
+    dontSend:boolean = false;
+    tick:number = 0; //in seconds
+    
     sendNow( res, count ){
-        
+        let d = new Date();
+
         if ( this.dontSend == true ) return;
-
-        if ( this.sendCount <= 2 ) {
-            //this.sendCount++;
-            this.tick = 60; // 1min
+        console.log(this.label);                            //
+        console.log( 'Sent', this.sendCount );               // for testing
+        console.log( 'Minutes', d.getMinutes() )            //
+        if ( this.sendCount == 0 ){
+            this.tick = 0;
         }
-        else if ( this.sendCount == 3) {
-            //this.sendCount++;
-            this.tick = 300; // 5 mins
+        if ( this.sendCount <= 1 ) {
+                //this.sendCount++;
+                this.tick = 1; // 1min
         }
-        else if ( this.sendCount > 3 ) {
-            //this.sendCount++;
-            this.tick = 600; //10 mins
+        else if ( this.sendCount == 2) {
+                //this.sendCount++;
+                this.tick = 5; // 5 mins
         }
-
-        if( this.dontSend == false ){ 
+        else if ( this.sendCount > 2 ) {
+                //this.sendCount++;
+                this.tick = 10; //10 mins
+        }
+            console.log('next message in: ', this.tick, 'mins' )    //for testing
             this.sendText( res, count );
-            this.sendCount++;
-            this.dontSend = true;
-            setTimeout( () =>  this.dontSend = false , this.tick * 1000);
-            // console.log('This is sendnow()', this.tick);
-            // console.log('This is sendCount', this.sendCount);     
-        }
-
+            setTimeout( () => {
+                this.dontSend = false   
+            } , this.tick * 60000);
     }
+    //
+    //  Function that displays alert when a message is sent or not.
+    //
+    messageAlert:boolean;
+    messageFailAlert:boolean;
+    alertTimeOut = 1000;
+    handleSmsEvent( e ){
 
+        this.messageAlert = e.sent;
+        setTimeout( ()=>{ this.messageAlert = false }, this.alertTimeOut );
 
-    handleSms( e ){
-        console.log( e )
+        this.messageFailAlert = e.fail;
+        setTimeout( ()=>{ this.messageFailAlert = false }, this.alertTimeOut );
+
+        // console.log(e)
     }
-
+    //
+    //  Function that resets sendNot when a request is successful.
+    //
     success(){
 
-        this.counter = 0; //variable from siren component
-        this.sendCount = 0;       // Reset send pattern when ..
-        this.dontSend = false;  //  Successful
+        this.counter = 0; // variable from siren component
+        this.sendCount = 0;       // Reset sendNow() when ..
+        this.dontSend = false;  //  Successful by resetting these variables
 
     }
 

@@ -1,13 +1,9 @@
 import { Component, Input, ViewChild } from '@angular/core';
 //Services
 import { PhilgoApi } from '../../providers/philgo-api';
-//import { PingService } from '../../providers/ping-service'
 //Components
 import { SirenComponent } from '../siren/siren';
 
-
-import 'rxjs/add/operator/repeat';
-import 'rxjs/add/operator/expand';
 import 'rxjs/add/operator/timeout';
 
 @Component({
@@ -17,10 +13,9 @@ import 'rxjs/add/operator/timeout';
 })
 export class PhilgoPingComponent {
 //config
-  timeOut:number = 5000;  //request timeout and setTimeout in pingloop()
-  barLength:number = 290; // lenght of the bar: 285 max
+timeOut:number = 1000;  //request timeout and setTimeout in pingloop()
+barLength:number = 290; // lenght of the bar: 285 max
 
-//
 @Input() graphUrl:String;
 @Input() label:String;
 @ViewChild('sound') siren:SirenComponent;
@@ -33,17 +28,20 @@ responseData = [];
 
 
 
-}
-  ngOnInit() {
-        this.pingLoop();
-        }
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
   }
-  //Function to request Data from server
+  ngOnInit() {
+     this.pingLoop();
+  }
+  ngOnDestroy(){
+     this.subscription.unsubscribe();
+  }
+  //
+  //  Function that waits for PhilgoApi service
+  //
   subscription;
   pingLoop() {
-    let url = this.graphUrl + '&dummy=' + (new Date).getTime();
+   // let url = this.graphUrl + '&dummy=' + (new Date).getTime();
+    let url = this.graphUrl;
      this.subscription = this.philgo.ping( url )  // url will be passed into http service function
                     .timeout(this.timeOut)
                     .subscribe( 
@@ -53,7 +51,9 @@ responseData = [];
 
     }
 
-//Re-usable functions
+  //
+  //  Function if url succeed
+  //
   handleSuccess( data ){
 
         let success = {
@@ -64,7 +64,9 @@ responseData = [];
         this.siren.success();
 
   }
-
+  //
+  //  Function if url fail
+  //
   handleError( err ){
 
         let error = {}
@@ -72,8 +74,7 @@ responseData = [];
           error = { server : this.label,
                     url: 'No URL found in response body',
                     message :
-                    `REQUEST TIME-OUT!!
-                    Check the server to know the problem.`,
+                    `REQUEST TIME-OUT!!Check the server to know the problem.`,
                     status : '0' };
         } else {
           error = { server : this.label,
@@ -85,7 +86,10 @@ responseData = [];
         this.handleResponse( error ); // append red bar
 
     }
-  //Handle the response from server
+  //
+  //  Handles the response wether success or fail.
+  //  Responsible for graph.
+  //
   handleResponse( data ){
 
         this.responseData.push( data );

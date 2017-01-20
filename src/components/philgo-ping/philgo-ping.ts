@@ -100,8 +100,8 @@ isFaulty:boolean;
   handleResponse( data ){
 
         this.responseData.push( data );
-        //limit bar lenght to 285
-        if (this.barLength > 285) this.barLength = 285;
+        //limit bar lenght to 286
+        if (this.barLength > 286) this.barLength = 286;
         if ( this.responseData.length == this.barLength + 1 ){
             this.responseData.shift();
         }

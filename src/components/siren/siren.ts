@@ -10,7 +10,7 @@ import { SmsService } from '../../providers/sms-service'
 export class SirenComponent {
     
   @Input() label:String;
-  dropCount:number = 5; //DEFAULT DROP COUNT VALUE
+  probeCount:number = 5; //DEFAULT DROP COUNT VALUE
   dropLimit:number = 50; //MAX DROP COUNT VALUE
 
  
@@ -52,10 +52,10 @@ export class SirenComponent {
     
     this.counter++
     if ( this.isMuted == false && this.isPlaying == false ) {
-        if( this.counter >= this.dropCount ) this.audio.play();
+        if( this.counter >= this.probeCount ) this.audio.play();
         //console.log('should be playing');
     }  
-    if( this.counter >= this.dropCount ) this.sendNow( err, this.counter );
+    if( this.counter >= this.probeCount ) this.sendNow( err, this.counter );
     
         // console.log( 'count :', this.counter );
         // console.log( 'playing? :',  this.isPlaying );
@@ -69,14 +69,14 @@ export class SirenComponent {
 
         if ( e.target.value.match( this.exp ) ){
             alert('Non-numeric characters not allowed!')
-            e.target.value = this.dropCount;
+            e.target.value = this.probeCount;
             return false
         }
         if ( e.target.value > this.dropLimit ){
             alert('Max value allowed is '+ this.dropLimit + '!')
             e.target.value = this.dropLimit;
         }
-        this.dropCount = e.target.value;
+        this.probeCount = e.target.value;
 
     }
     OnKeyDownValidation( e ){
@@ -85,13 +85,13 @@ export class SirenComponent {
         if ( e.keyCode == 13 || e.keyIdentifier == 'Enter') e.target.blur(); // Android 4.4.2
       // console.log( e )
     }
-    showAlertDropCount:boolean;
+    showAlertProbeCount:boolean;
     OnFocusValidation( e ){
-        if ( e.type == 'focus' ) this.showAlertDropCount = true;
+        if ( e.type == 'focus' ) this.showAlertProbeCount = true;
        // console.log( e );
     }
     OnBlurValidation( e ){
-        this.showAlertDropCount = false;
+        this.showAlertProbeCount = false;
     }
 
     //

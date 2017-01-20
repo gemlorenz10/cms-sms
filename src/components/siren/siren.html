@@ -6,9 +6,9 @@
         aria-hidden="true"
         ></i>
     <input type="text" 
-        class="drop-count" 
+        class="probe-count" 
         [class.alert]="isNotAllowed"
-        [value]="dropCount" 
+        [value]="probeCount" 
         (change) = "OnChangeValidation($event)"
         (keydown) = "OnKeyDownValidation($event)"
         (focus) = "OnFocusValidation($event)"
@@ -29,7 +29,7 @@
    Message not sent to admin.
 </div>
 
-<div class="alert alert-info drop-count info"
-      *ngIf="showAlertDropCount == true" >
-    Change number of drop count.
+<div class="alert alert-info probe-count info"
+      *ngIf="showAlertProbeCount == true" >
+    Probes before marking up or down.
 </div>

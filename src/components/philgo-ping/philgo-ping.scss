@@ -43,9 +43,13 @@ philgo-ping {
                     display: inline-block;
                     width:1px;
                     height:30px;
-                    background-color:#b30000;
+                    //background-color:#b30000;
+                    background-color: #f44242;
                 }
-        }
+            }
+            .faulty{
+                border-color: #f44242;
+            }
 
     } 
   }            

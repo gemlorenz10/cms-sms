@@ -23,6 +23,8 @@ barLength:number = 290; // lenght of the bar: 285 max
 
 barColor;
 responseData = [];
+isFaulty:boolean;
+
  constructor( private philgo: PhilgoApi, 
               private sirenComponent: SirenComponent ){
 
@@ -61,7 +63,10 @@ responseData = [];
           status : '200'    // static value for status code when success.
         }
         this.handleResponse( success );
-        if( this.succesCount == this.siren.dropCount ) this.siren.success(); //only considered good when successCount meets drop count
+        if( this.succesCount == this.siren.dropCount ){ 
+              this.siren.success(); 
+              this.isFaulty = false; // displays red border to indicate the server is still considered faulty
+          }//only considered good when successCount meets drop count
         // console.log( 'this is drop count', this.siren.dropCount );
   }
   //
@@ -85,7 +90,8 @@ responseData = [];
         }
         this.siren.soundSiren( error ); // function from child compoment SirenComponent
         this.handleResponse( error ); // append red bar
-
+        if( this.siren.counter >= this.siren.dropCount ) this.isFaulty = true; 
+        console.log( this.siren.counter, this.siren.dropCount )
     }
   //
   //  Handles the response wether success or fail.

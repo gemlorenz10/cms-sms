@@ -4,7 +4,8 @@
                   <!-- Siren Component Here -->
                   <siren [label]="label" #sound></siren>
                 </div>
-                <div class="bar  container .container-fluid">
+                <div class="bar  container .container-fluid"
+                      [ngClass] = "isFaulty == true ? 'faulty': ''">
                   <span *ngFor="let res of responseData"
                     [ngClass]="res.status == 200 ? 'success' : 'error'"   
                   ></span>

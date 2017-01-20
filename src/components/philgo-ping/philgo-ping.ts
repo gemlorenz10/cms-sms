@@ -42,8 +42,8 @@ isFaulty:boolean;
   pingLoop() {
     let url = this.graphUrl + '&dummy=' + (new Date).getTime();
     //let url = this.graphUrl;
-     this.subscription = this.philgo.ping( url )  // url will be passed into http service function
-                    .timeout(this.timeOut)
+     this.subscription = this.philgo.ping( url, this.timeOut )  // url will be passed into http service function
+                   // .timeout(this.timeOut)
                     .subscribe( 
                       ( re ) => this.handleSuccess( re ), //get the data
                       ( error ) => this.handleError( error )) //get http status code
@@ -91,7 +91,7 @@ isFaulty:boolean;
         this.siren.soundSiren( error ); // function from child compoment SirenComponent
         this.handleResponse( error ); // append red bar
         if( this.siren.counter >= this.siren.dropCount ) this.isFaulty = true; 
-        console.log( this.siren.counter, this.siren.dropCount )
+       // console.log( this.siren.counter, this.siren.dropCount )
     }
   //
   //  Handles the response wether success or fail.

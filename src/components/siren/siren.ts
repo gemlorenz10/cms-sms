@@ -118,8 +118,8 @@ export class SirenComponent {
        // console.log( 'next send in', this.tick );
         this.sendCount++;   
         
-        console.log('Message was sent');                        //
-        console.log('Message sent = ', this.sendCount);            // for testing
+        // console.log('Message was sent');                        //
+        // console.log('Message sent = ', this.sendCount);            // for testing
         
         this.dontSend = true;
 
@@ -136,9 +136,9 @@ export class SirenComponent {
 
         if ( this.dontSend == true ) return;
 
-        console.log(this.label);
-        console.log( 'Sent', this.sendCount );
-        console.log( 'Minutes', d.getMinutes() )
+        // console.log(this.label);
+        // console.log( 'Sent', this.sendCount );
+        // console.log( 'Minutes', d.getMinutes() )
 
         if ( this.sendCount == 0 ){ this.tick = 0; }
         else if ( this.sendCount <= 1 ) { this.tick = 1; }// 1min
@@ -146,7 +146,7 @@ export class SirenComponent {
         else if ( this.sendCount == 2) { this.tick = 5; }// 5 mins
         else if ( this.sendCount > 2 ) { this.tick = 10; }//10 mins 
             
-        console.log('next message in: ', this.tick, 'mins' )    //for testing
+    //    console.log('next message in: ', this.tick, 'mins' )    //for testing
            
         this.sendText( res, count );
         setTimeout( () => {

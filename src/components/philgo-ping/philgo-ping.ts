@@ -46,7 +46,7 @@ isFaulty:boolean;
                                 .ping( url, this.timeOut )  // url will be passed into http service function
                                 .subscribe( 
                                     ( re ) => this.handleSuccess( re ), //get the data
-                                    ( error ) => this.handleError( error )) //get http status code
+                                    ( error ) => this.handleError( error )); //get http status code
     setTimeout( ()=>{ this.pingLoop() }, this.timeOut );
 
     }

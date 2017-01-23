@@ -2,15 +2,15 @@
     CMS mobile with sms alert.This is for Withcenter Inc, internal use.
 This project is based on [Aonic Repository](https://github.com/thruthesky/aonic).
 * Web Server Monitoring
-###Usage
-####Add this to cms.html
- ```
+-Usage
+--Add this to cms.html
+ ```html
 <philgo-ping
 [label] = "'website.com'"
 [graphUrl] = "'http://your.website.com'">
 </philgo-ping>
 ```
-####Add contact number to siren.ts line 104
+--Add contact number to siren.ts line 104
 ```javascript
 this.numberTxt = [ 'your number' ];
 ```

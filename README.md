@@ -10,7 +10,7 @@ This project is based on [Aonic Repository](https://github.com/thruthesky/aonic)
 [graphUrl] = "'http://your.website.com'">
 </philgo-ping>  
 ```  
---Add contact number to siren.ts line 104  
+--Add contact number to siren.ts line 104, under sendText() function. 
 ```javascript
 this.numberTxt = [ 'your number' ];
 ```

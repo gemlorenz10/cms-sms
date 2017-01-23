@@ -29,12 +29,15 @@ isFaulty:boolean;
               private sirenComponent: SirenComponent ){
 
   }
-  ngOnInit() {
+  // ngOnChanges() {
+  //    this.pingLoop();
+  // }
+  ngOnInit(){
      this.pingLoop();
   }
-  ngOnDestroy(){
-     this.subscription.unsubscribe();
-  }
+  // ngOnDestroy(){
+  //    this.subscription.unsubscribe();
+  // }
   //
   //  Function that waits for PhilgoApi service
   //
@@ -73,7 +76,7 @@ isFaulty:boolean;
   //  Function if url fail
   //
   handleError( err ){
-        
+       // console.log( err )
         this.succesCount = 0; // reset successCount when there is an error.
         let error = {}
         if ( err.status == 0 || err.status == undefined || err.status == null ){
@@ -105,7 +108,7 @@ isFaulty:boolean;
         if ( this.responseData.length == this.barLength + 1 ){
             this.responseData.shift();
         }
-
+      //  console.log(this.responseData);
   } 
 
 }

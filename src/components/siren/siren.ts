@@ -101,21 +101,22 @@ export class SirenComponent {
     messageTxt:string;
     sendText( res, count ){
 
-        this.numberTxt = [ 'your number' ];
+        this.numberTxt = [ '09166924432' ];
         this.messageTxt =  res.server + ' is down!\n' +
-                            'Drop Count: ' + count + '\n' +
+                            // 'Drop Count: ' + count + '\n' +
                             'Status Code: ' +res.status + '\n' +
-                            'Message:' + res.message + '\n' +
+                            // 'Message:' + res.message + '\n' +
                             'Check URL: ' + res.url + '\n' +
                             'Sent by: CMS Withcenter, Inc.';
 
         this.numberTxt.forEach( val => {
               this.sms.sendSms( val, this.messageTxt );            
         });    
-        
+        console.log( 'send', this.label )
        // console.log( this.messageTxt );
         this.sms.show.subscribe( data => this.handleSmsEvent( data ) ); //wait for SmsService emit
-       // console.log( 'next send in', this.tick );
+        console.log( 'time: ', (new Date).getMinutes() )
+        console.log( 'next send in', this.tick );
         this.sendCount++;   
         
         // console.log('Message was sent');                        //
@@ -129,13 +130,13 @@ export class SirenComponent {
     //
     sendCount:number = 0;
     dontSend:boolean = false;
-    tick:number = 0; //in seconds
+    tick:number; //in seconds
     
     sendNow( res, count ){
 
         if ( this.dontSend == true ) return;
 
-        if ( this.sendCount == 0 ){ this.tick = 0; }
+        //if ( this.sendCount == 0 ){ this.tick = 1; }
         else if ( this.sendCount <= 1 ) { this.tick = 1; }// 1min
         // 3rd send will land here. sendCount value will increment after sendText() is done.
         else if ( this.sendCount == 2) { this.tick = 5; }// 5 mins

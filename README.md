@@ -16,7 +16,15 @@ This project is based on [Aonic Repository](https://github.com/thruthesky/aonic)
 
 1. Double check - set timeout on http get query : 10s
 2. Make a unique address on each request.
+3. Add contact number via app. try
+[localStorage](http://stackoverflow.com/questions/3357553/how-to-store-an-array-in-localstorage)
 
+```javascript
+var names = [];
+names[0] = prompt("New member name?");
+localStorage.setItem("names", JSON.stringify(names));
+var storedNames = JSON.parse(localStorage.getItem("names"));
+```
 
 ##Platforms Used
     - NodeJS

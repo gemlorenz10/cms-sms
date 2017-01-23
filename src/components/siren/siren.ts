@@ -101,7 +101,7 @@ export class SirenComponent {
     messageTxt:string;
     sendText( res, count ){
 
-        this.numberTxt = ['09152308483'];
+        this.numberTxt = [ 'your number' ];
         this.messageTxt =  res.server + ' is down!\n' +
                             'Drop Count: ' + count + '\n' +
                             'Status Code: ' +res.status + '\n' +
@@ -152,7 +152,7 @@ export class SirenComponent {
     //
     messageAlert:boolean;
     messageFailAlert:boolean;
-    alertTimeOut = 1000;
+    alertTimeOut = 5000;
     handleSmsEvent( e ){
 
         this.messageAlert = e.sent;

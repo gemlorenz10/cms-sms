@@ -42,12 +42,12 @@ isFaulty:boolean;
   pingLoop() {
     let url = this.graphUrl + '&dummy=' + (new Date).getTime();
     //let url = this.graphUrl;
-     this.subscription = this.philgo.ping( url, this.timeOut )  // url will be passed into http service function
-                   // .timeout(this.timeOut)
-                    .subscribe( 
-                      ( re ) => this.handleSuccess( re ), //get the data
-                      ( error ) => this.handleError( error )) //get http status code
-                      setTimeout( ()=>{ this.pingLoop() }, this.timeOut );
+     this.subscription = this.philgo
+                                .ping( url, this.timeOut )  // url will be passed into http service function
+                                .subscribe( 
+                                    ( re ) => this.handleSuccess( re ), //get the data
+                                    ( error ) => this.handleError( error )) //get http status code
+    setTimeout( ()=>{ this.pingLoop() }, this.timeOut );
 
     }
 
@@ -66,8 +66,8 @@ isFaulty:boolean;
         if( this.succesCount == this.siren.probeCount ){ 
               this.siren.success(); 
               this.isFaulty = false; // displays red border to indicate the server is still considered faulty
-          }//only considered good when successCount meets drop count
-        // console.log( 'this is drop count', this.siren.probeCount );
+          }//only considered good when successCount meets probeCount
+        // console.log( 'this is probe count', this.siren.probeCount );
   }
   //
   //  Function if url fail
@@ -76,7 +76,7 @@ isFaulty:boolean;
         
         this.succesCount = 0; // reset successCount when there is an error.
         let error = {}
-        if ( err.status == 0 || err.status == undefined ){
+        if ( err.status == 0 || err.status == undefined || err.status == null ){
           error = { server : this.label,
                     url: 'No URL found in response body',
                     message :

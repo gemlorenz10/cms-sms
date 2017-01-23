@@ -43,7 +43,7 @@ export class SirenComponent {
       if ( this.isMuted == true ) this.audio.pause();   
       if ( this.isMuted == false ) this.audio.play();
   
-}
+    }
   //
   //    Function that plays sound and send sms.
   //
@@ -132,13 +132,8 @@ export class SirenComponent {
     tick:number = 0; //in seconds
     
     sendNow( res, count ){
-        let d = new Date();
 
         if ( this.dontSend == true ) return;
-
-        // console.log(this.label);
-        // console.log( 'Sent', this.sendCount );
-        // console.log( 'Minutes', d.getMinutes() )
 
         if ( this.sendCount == 0 ){ this.tick = 0; }
         else if ( this.sendCount <= 1 ) { this.tick = 1; }// 1min
@@ -146,7 +141,6 @@ export class SirenComponent {
         else if ( this.sendCount == 2) { this.tick = 5; }// 5 mins
         else if ( this.sendCount > 2 ) { this.tick = 10; }//10 mins 
             
-    //    console.log('next message in: ', this.tick, 'mins' )    //for testing
            
         this.sendText( res, count );
         setTimeout( () => {

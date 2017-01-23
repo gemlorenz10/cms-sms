@@ -1,30 +1,21 @@
 # Center Monitoring System with SMS
     CMS mobile with sms alert.This is for Withcenter Inc, internal use.
 This project is based on [Aonic Repository](https://github.com/thruthesky/aonic).
-* Web Server Monitoring 
-        ```HTML
-        <philgo-ping
-        [label] = "'Gem Desktop'"
-        [graphUrl] = "'http://your.website.com'">
-        ```
+* Web Server Monitoring
+###Usage
+####Add this to cms.html
+ ```
+<philgo-ping
+[label] = "'website.com'"
+[graphUrl] = "'http://your.website.com'">
 </philgo-ping>
+```
+####Add contact number to siren.ts line 104
+```javascript
+this.numberTxt = [ 'your number' ];
+```
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~
-
-
-## TODO
-
-1. Double check - set timeout on http get query : 10s
-2. Make a unique address on each request.
-3. Add contact number via app. try
-[localStorage](http://stackoverflow.com/questions/3357553/how-to-store-an-array-in-localstorage)
-
-```javascript
-var names = [];
-names[0] = prompt("New member name?");
-localStorage.setItem("names", JSON.stringify(names));
-var storedNames = JSON.parse(localStorage.getItem("names"));
-```
 
 ##Platforms Used
     - NodeJS
@@ -53,7 +44,24 @@ var storedNames = JSON.parse(localStorage.getItem("names"));
 ###Cordova Network info Plugin
 [Github Repository](https://github.com/apache/cordova-plugin-network-information)
 
-##TO-DO / Add feature
+
+
+## TODO
+
+1. Double check - set timeout on http get query : 10s
+2. Make a unique address on each request.
+3. Add contact number via app. try
+[localStorage](http://stackoverflow.com/questions/3357553/how-to-store-an-array-in-localstorage)
+
+```javascript
+var names = [];
+names[0] = prompt("New member name?");
+localStorage.setItem("names", JSON.stringify(names));
+var storedNames = JSON.parse(localStorage.getItem("names"));
+```
+
+
+##Add feature
 *Check connection mode* - Check if the device is connected to any connection.
 
 *Ping IP(ICMP)* - ICMP service for office internet monitoring.
@@ -61,9 +69,6 @@ var storedNames = JSON.parse(localStorage.getItem("names"));
 *Server Statistics Monitor* - Monitors server stats ie. CPU, RAM and DISK.
 
 
-
-*toast component* - to be more transparent to user.
-            Show message if something happens in background.
 
 
 

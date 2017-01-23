@@ -29,9 +29,6 @@ isFaulty:boolean;
               private sirenComponent: SirenComponent ){
 
   }
-  // ngOnChanges() {
-  //    this.pingLoop();
-  // }
   ngOnInit(){
      this.pingLoop();
   }
@@ -48,7 +45,7 @@ isFaulty:boolean;
      this.subscription = this.philgo
                                 .ping( url, this.timeOut )  // url will be passed into http service function
                                 .subscribe( 
-                                    ( re ) => this.handleSuccess( re ), //get the data
+                                    ( re ) => this.handleSuccess( re ),      //get the data
                                     ( error ) => this.handleError( error )); //get http status code
     setTimeout( ()=>{ this.pingLoop() }, this.timeOut );
 
@@ -68,8 +65,8 @@ isFaulty:boolean;
         this.handleResponse( success );
         if( this.succesCount == this.siren.probeCount ){ 
               this.siren.success(); 
-              this.isFaulty = false; // displays red border to indicate the server is still considered faulty
-          }//only considered good when successCount meets probeCount
+              this.isFaulty = false;  // displays red border to indicate the server is still considered faulty
+        }                             //only considered good when successCount meets probeCount
         // console.log( 'this is probe count', this.siren.probeCount );
   }
   //
@@ -92,7 +89,7 @@ isFaulty:boolean;
                     status : err.status };
         }
         this.siren.soundSiren( error ); // function from child compoment SirenComponent
-        this.handleResponse( error ); // append red bar
+        this.handleResponse( error );   // append red bar
         if( this.siren.counter >= this.siren.probeCount ) this.isFaulty = true; 
        // console.log( this.siren.counter, this.siren.probeCount )
     }

@@ -17,12 +17,13 @@ this.numberTxt = [ 'your number' ];
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~
 
-##Platforms Used
+##Programs Used
     - NodeJS
     - Angular2
     - Ionic-CLI
     - Cordova
-
+##Platform
+    - Android
 ##Environment
 ###Install Packages
     npm Install
@@ -32,19 +33,6 @@ this.numberTxt = [ 'your number' ];
 ###Testing on mobile
     ionic platform add android
     ionic run android
-
-##PLUGINS TO ADD
-
-###Cordova SMS Plugin( Added )
-[Npm link](https://www.npmjs.com/package/cordova-sms-plugin)
-[Github Repository](https://github.com/cordova-sms/cordova-sms-plugin)
-###Cordova Ping Plugin
-[Npm link](https://www.npmjs.com/package/cordova-plugin-ping)
-[Github Repository](https://github.com/t1st3/cordova-plugin-ping)
-###Cordova Network info Plugin
-[Github Repository](https://github.com/apache/cordova-plugin-network-information)
-
-
 
 ## TODO
 

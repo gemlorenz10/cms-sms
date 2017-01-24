@@ -19,10 +19,20 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class CmsPage {
 @Output() isConnected = new EventEmitter();
   pageTitle ="Center Monitoring System"
-  noInternet:boolean = false;
+  noInternet:boolean = true;
   
   constructor() {
-    window.addEventListener("offline", () => { 
+    this.checkInternet();
+  }
+
+  ngOnInit(){
+    this.checkInternet();
+  }
+
+
+
+  checkInternet(){
+      window.addEventListener("offline", () => { 
          this.noInternet = true;
          this.checkConnectionEmitter( { 'connection': false } );
      });
@@ -32,6 +42,7 @@ export class CmsPage {
         this.checkConnectionEmitter( { 'connection': true } );
       });
   }
+
 
   checkConnectionEmitter(e){
     return this.isConnected.emit(e);

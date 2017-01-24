@@ -35,7 +35,6 @@ runPing:boolean;
   }
 
   ngOnInit(){
-      
       this.pingLoop();
   }
   // ngOnDestroy(){
@@ -47,7 +46,11 @@ runPing:boolean;
   //
   subscription;
   pingLoop() {
-    if( this.runPing == false ) return;
+    if( this.runPing == false ||
+        this.runPing == null || 
+        this.runPing == undefined) 
+        return;
+        
     let url = this.graphUrl + '&dummy=' + (new Date).getTime();
     //let url = this.graphUrl;
      this.subscription = this.philgo

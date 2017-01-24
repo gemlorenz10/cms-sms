@@ -21,17 +21,23 @@ page-cms {
   .spinner-container{
         position: absolute;
         height: 100vh;
-        width:100vh;
+        width:100vw;
         top: 0px;
         background-color: black;
         opacity: 0.9;
         overflow: hidden;
         .spinner{
-              margin: 30% auto;
-              width: 53%;
+             margin-top: 35vh;
+            height: 18vh;
+            width: 100vw;
+            text-align: center;
+            font-size: 3vh;
         }
         .label{
-            margin-left: 17%;
+           width: 100vw;
+            text-align: center;
+            font-size: 3vh;
+            
         }
     }
 }

@@ -1,7 +1,7 @@
 # Center Monitoring System with SMS
     CMS mobile with sms alert.This is for Withcenter Inc, internal use.
 This project is based on [Aonic Repository](https://github.com/thruthesky/aonic).
-* Web Server Monitoring  
+* Philgo Website Monitoring  
 -Usage  
 --Add this to cms.html  
  ```HTML
@@ -48,8 +48,8 @@ this.numberTxt = [ 'your number' ];
 
 ## TODO
 
-1. Double check - set timeout on http get query : 10s
-2. Make a unique address on each request.
+1. ~~Double check - set timeout on http get query : 10s~~
+2. ~~Make a unique address on each request.~~
 3. Add contact number via app. try
 [localStorage](http://stackoverflow.com/questions/3357553/how-to-store-an-array-in-localstorage)
 
@@ -62,7 +62,7 @@ var storedNames = JSON.parse(localStorage.getItem("names"));
 
 
 ##Add feature
-*Check connection mode* - Check if the device is connected to any connection.
+*Check connection mode* - Check if the device is connected to any connection. Done.(Limited to first hop)
 
 *Ping IP(ICMP)* - ICMP service for office internet monitoring.
 

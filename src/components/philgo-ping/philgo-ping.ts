@@ -3,7 +3,6 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { PhilgoApi } from '../../providers/philgo-api';
 //Components
 import { SirenComponent } from '../siren/siren';
-
 import 'rxjs/add/operator/timeout';
 
 @Component({
@@ -35,6 +34,7 @@ isFaulty:boolean;
   // ngOnDestroy(){
   //    this.subscription.unsubscribe();
   // }
+
   //
   //  Function that waits for PhilgoApi service
   //
@@ -100,7 +100,7 @@ isFaulty:boolean;
   handleResponse( data ){
 
         this.responseData.push( data );
-        //limit bar lenght to 286
+        //limit bar lenght to fit to 
         if (this.barLength > 286) this.barLength = 286;
         if ( this.responseData.length == this.barLength + 1 ){
             this.responseData.shift();

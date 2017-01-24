@@ -113,10 +113,12 @@ export class SirenComponent {
               this.sms.sendSms( val, this.messageTxt );            
         });    
         console.log( 'send', this.label )
-       // console.log( this.messageTxt );
+
         this.sms.show.subscribe( data => this.handleSmsEvent( data ) ); //wait for SmsService emit
+        
         console.log( 'time: ', (new Date).getMinutes() )
         console.log( 'next send in', this.tick );
+        
         this.sendCount++;   
         
         // console.log('Message was sent');                        //

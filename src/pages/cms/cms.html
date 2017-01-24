@@ -2,7 +2,7 @@
     <!--<span><i class="fa fa-cog fa-2" aria-hidden="true"></i></span>-->
     </h3>
     </header>
-
+<div>
 <philgo-ping
   [label] = "'wi.philgo.com'"
   [graphUrl] = "'http://wi.philgo.com/?module=ajax&action=version&submit=1'">
@@ -23,6 +23,12 @@
   [graphUrl] = "'http://w8.philgo.com/?module=ajax&action=version&submit=1'">
 </philgo-ping>
 
+<div class="spinner-container" *ngIf="noInternet == true">
+  <div class="spinner" >
+    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+  </div>
+<span class="label">Waiting for internet...</span>
+</div>
 
 
 <!--footer>this is footer</footer-->

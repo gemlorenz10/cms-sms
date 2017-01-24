@@ -163,6 +163,7 @@ export class SirenComponent {
 
         this.messageFailAlert = e.fail;
         setTimeout( ()=>{ this.messageFailAlert = false }, this.alertTimeOut );
+        if ( e.error != undefined || e.error != null ) console.log( e.error );
     
     }
     //

@@ -1,18 +1,20 @@
 import { Component, Input, ViewChild } from '@angular/core';
+import {  Router } from '@angular/router';
 //Services
 import { PhilgoApi } from '../../providers/philgo-api';
 //Components
+import { CmsPage } from '../../pages/cms/cms'
 import { SirenComponent } from '../siren/siren';
 import 'rxjs/add/operator/timeout';
 
 @Component({
   selector: 'philgo-ping',
   templateUrl: 'philgo-ping.html',
-  providers:[SirenComponent]
+  providers:[SirenComponent, CmsPage]
 })
 export class PhilgoPingComponent {
 //config
-timeOut:number = 10000;  //request timeout and setTimeout in pingloop()
+timeOut:number = 1000;  //request timeout and setTimeout in pingloop()
 barLength:number = 290; // lenght of the bar: 285 max
 
 @Input() graphUrl:String;
@@ -24,15 +26,20 @@ barColor;
 responseData = [];
 isFaulty:boolean;
 
+runPing:boolean;
  constructor( private philgo: PhilgoApi, 
-              private sirenComponent: SirenComponent ){
-
+              private sirenComponent: SirenComponent, 
+              private checkConnect: CmsPage){
+  
+  this.checkConnect.isConnected.subscribe( data => this.handleConnectionState( data ) );
   }
+
   ngOnInit(){
-     this.pingLoop();
+      
+      this.pingLoop();
   }
   // ngOnDestroy(){
-  //    this.subscription.unsubscribe();
+  //     this.runPing = false;
   // }
 
   //
@@ -40,6 +47,7 @@ isFaulty:boolean;
   //
   subscription;
   pingLoop() {
+    if( this.runPing == false ) return;
     let url = this.graphUrl + '&dummy=' + (new Date).getTime();
     //let url = this.graphUrl;
      this.subscription = this.philgo
@@ -47,10 +55,8 @@ isFaulty:boolean;
                                 .subscribe( 
                                     ( re ) => this.handleSuccess( re ),      //get the data
                                     ( error ) => this.handleError( error )); //get http status code
-    setTimeout( ()=>{ this.pingLoop() }, this.timeOut );
-
+               setTimeout( ()=>{ this.pingLoop() }, this.timeOut );
     }
-
   //
   //  Function if url succeed
   //
@@ -68,6 +74,7 @@ isFaulty:boolean;
               this.isFaulty = false;  // displays red border to indicate the server is still considered faulty
         }                             //only considered good when successCount meets probeCount
         // console.log( 'this is probe count', this.siren.probeCount );
+    
   }
   //
   //  Function if url fail
@@ -92,7 +99,8 @@ isFaulty:boolean;
         this.handleResponse( error );   // append red bar
         if( this.siren.counter >= this.siren.probeCount ) this.isFaulty = true; 
        // console.log( this.siren.counter, this.siren.probeCount )
-    }
+
+  }
   //
   //  Handles the response wether success or fail.
   //  Responsible for graph.
@@ -105,7 +113,13 @@ isFaulty:boolean;
         if ( this.responseData.length == this.barLength + 1 ){
             this.responseData.shift();
         }
-      //  console.log(this.responseData);
+       // console.log(this.responseData);
   } 
+
+  handleConnectionState( e ){
+    this.runPing = e.connection;
+    console.log( e.connection );
+    this.pingLoop();
+  }
 
 }

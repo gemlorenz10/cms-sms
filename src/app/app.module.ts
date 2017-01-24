@@ -12,14 +12,13 @@ import { AppComponent } from './app.component';
 import { PhilgoPingComponent } from '../components/philgo-ping/philgo-ping'
 import { SirenComponent } from '../components/siren/siren'
 
-
 //pages
 import { CmsPage } from '../pages/cms/cms';
-
 
 const appRoutes: Routes = [
 
   { path: '', component: CmsPage}
+  
 
 ];
 
@@ -28,7 +27,7 @@ const appRoutes: Routes = [
     AppComponent,
     PhilgoPingComponent,
     SirenComponent,
-    CmsPage,
+    CmsPage
    
   ],
   imports: [

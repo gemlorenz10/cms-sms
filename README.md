@@ -1,5 +1,5 @@
 # Center Monitoring System with SMS
-    CMS mobile with sms alert.This is for Withcenter Inc, internal use.
+    CMS mobile with sms alert.For Withcenter Inc, internal use.
 This project is based on [Aonic Repository](https://github.com/thruthesky/aonic).
 * Philgo Website Monitoring  
 -Usage  

@@ -114,9 +114,9 @@ export class SirenComponent {
         });    
 
         this.sms.show.subscribe( data => this.handleSmsEvent( data ) ); //wait for SmsService emit
-        this.sendCount++;   
-        this.dontSend = true;
-
+         this.sendCount++;   
+         this.dontSend = true;
+        console.log( 'sendText. Next in: ', this.tick, 'Minute', ( new Date ).getMinutes() )
     }
     //
     //  Function that determines when to send sms or call sendText().
@@ -131,8 +131,8 @@ export class SirenComponent {
         else if ( this.sendCount <= 1 ) { this.tick = 1; }// 1min
         // 3rd send will land here. sendCount value will increment after sendText() is done.
         else if ( this.sendCount == 2) { this.tick = 5; }// 5 mins
-        else if ( this.sendCount > 2 ) { this.tick = 10; }//10 mins 
-            
+        else if ( this.sendCount  == 3 ) { this.tick = 20; }//20 mins 
+        else if ( this.sendCount > 3 ) { this.tick = 60; }//1hr
            
         this.sendText( res, count );
         setTimeout( () => {

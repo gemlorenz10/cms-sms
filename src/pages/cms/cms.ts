@@ -30,13 +30,17 @@ export class CmsPage {
     status = navigator.onLine
    // console.log( status )
     this.noInternet = !status;
-  }
+
+     if (this.noInternet == true) setTimeout(() => this.loadingDot(), 2000)
+
+    }
 //
 // Listen to network changes
 //
   checkInternet(){
       window.addEventListener("offline", () => { 
          this.noInternet = true;
+         setTimeout(() => this.loadingDot(), 2000)
          this.checkConnectionEmitter( { 'connection': false } );
                console.log( 'checkInternet offline' )
     });
@@ -53,5 +57,22 @@ export class CmsPage {
   checkConnectionEmitter(e){
     return this.isConnected.emit(e);
   }
+
+
+
+  
+    loadingDot(){
+        let dotspan = document.getElementById("loading");
+        let dotdotdot = setInterval( () => {
+        if(dotspan.innerHTML.length == 3) {
+            dotspan.innerHTML = "";
+        } else {
+            dotspan.innerHTML += ".";
+        }
+        }, 1000);
+
+        //When loading finished, disable "dotting"
+       // clearInterval(dotdotdot);
+    }
 
 }

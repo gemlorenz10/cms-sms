@@ -70,3 +70,13 @@ var storedNames = JSON.parse(localStorage.getItem("names"));
 
         Variable name:_JAVA_OPTIONS
         Variable value: -Xmx512M
+        
+###Sample Output ( SMS sending pattern check )
+
+      4siren.ts:119 sendText. Next in:  1 Minute 36  <-- Minute mark
+      4siren.ts:119 sendText. Next in:  1 Minute 37
+      4siren.ts:119 sendText. Next in:  5 Minute 38
+      4siren.ts:119 sendText. Next in:  10 Minute 43
+      4siren.ts:119 sendText. Next in:  20 Minute 53
+      4siren.ts:119 sendText. Next in:  20 Minute 13
+      4siren.ts:119 sendText. Next in:  20 Minute 33

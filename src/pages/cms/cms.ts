@@ -1,14 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
-//providers
-//Components
-
-/*
-  Generated class for the Cms page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-cms',
   templateUrl: 'cms.html',
@@ -28,7 +19,6 @@ export class CmsPage {
   ngOnInit(){
     let status;
     status = navigator.onLine
-   // console.log( status )
     this.noInternet = !status;
 
      if (this.noInternet == true) setTimeout(() => this.loadingDot(), 2000)
@@ -54,14 +44,14 @@ export class CmsPage {
 
   }
 
-
   checkConnectionEmitter(e){
     return this.isConnected.emit(e);
   }
 
 
 
-    dotdotdot
+
+    dotdotdot;
     loadingDot(){
         let dotspan = document.getElementById("loading");
         this.dotdotdot = setInterval( () => {
@@ -72,8 +62,6 @@ export class CmsPage {
         }
         }, 1000);
 
-        //When loading finished, disable "dotting"
-       // clearInterval(dotdotdot);
     }
 
 }

@@ -48,6 +48,7 @@ export class CmsPage {
      window.addEventListener("online", () => { 
         this.noInternet = false;
         this.checkConnectionEmitter( { 'connection': true } );
+        clearInterval(this.dotdotdot)
               console.log( 'checkInternet online!' )
     });
 
@@ -60,10 +61,10 @@ export class CmsPage {
 
 
 
-  
+    dotdotdot
     loadingDot(){
         let dotspan = document.getElementById("loading");
-        let dotdotdot = setInterval( () => {
+        this.dotdotdot = setInterval( () => {
         if(dotspan.innerHTML.length == 3) {
             dotspan.innerHTML = "";
         } else {

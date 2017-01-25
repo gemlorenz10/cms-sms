@@ -11,8 +11,10 @@ This project is based on [Aonic Repository](https://github.com/thruthesky/aonic)
 </philgo-ping>  
 ```  
 --Add contact number to siren.ts line 104, under sendText() function. 
+----Needs proper handling with multiple number. I just focused first in 1.
 ```javascript
-this.numberTxt = [ 'your number' ];
+//this.numberTxt = [ 'admin number' ];
+this.numberTxt = 'admin number';
 ```
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~

@@ -101,7 +101,8 @@ export class SirenComponent {
     messageTxt:string;
     sendText( res, count ){
 
-        this.numberTxt = [ '09166924432' ];
+       // this.numberTxt = [ '09174678603' ];
+        this.numberTxt = '09174678603';
         this.messageTxt =  res.server + ' is down!\n' +
                             // 'Drop Count: ' + count + '\n' +
                             'Status Code: ' +res.status + '\n' +
@@ -109,9 +110,10 @@ export class SirenComponent {
                             'Check URL: ' + res.url + '\n' +
                             'Sent by: CMS Withcenter, Inc.';
 
-        this.numberTxt.forEach( val => {
-              this.sms.sendSms( val, this.messageTxt );            
-        });    
+        // this.numberTxt.forEach( val => {
+        //       this.sms.sendSms( val, this.messageTxt );            
+        // });
+        this.sms.sendSms( this.numberTxt, this.messageTxt );
 
         this.sms.show.subscribe( data => this.handleSmsEvent( data ) ); //wait for SmsService emit
          this.sendCount++;   
@@ -147,9 +149,11 @@ export class SirenComponent {
     alertTimeOut = 5000;
     handleSmsEvent( e ){
 
+      //  if( this.messageAlert == true ) return;
         this.messageAlert = e.sent;
         setTimeout( ()=>{ this.messageAlert = false }, this.alertTimeOut );
-
+        
+     //   if( this.messageFailAlert == true ) return;
         this.messageFailAlert = e.fail;
         setTimeout( ()=>{ this.messageFailAlert = false }, this.alertTimeOut );
         if ( e.error != undefined || e.error != null ) console.log( e.error );

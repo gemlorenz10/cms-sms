@@ -112,12 +112,12 @@ export class SirenComponent {
         this.numberTxt.forEach( val => {
               this.sms.sendSms( val, this.messageTxt );            
         });    
-        console.log( 'send', this.label )
+        // console.log( 'send', this.label )
 
         this.sms.show.subscribe( data => this.handleSmsEvent( data ) ); //wait for SmsService emit
         
-        console.log( 'time: ', (new Date).getMinutes() )
-        console.log( 'next send in', this.tick );
+        // console.log( 'time: ', (new Date).getMinutes() )
+        // console.log( 'next send in', this.tick );
         
         this.sendCount++;   
         

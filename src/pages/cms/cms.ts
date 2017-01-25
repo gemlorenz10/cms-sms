@@ -19,22 +19,26 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class CmsPage {
 @Output() isConnected = new EventEmitter();
   pageTitle ="Center Monitoring System"
-  noInternet:boolean = true;
+  noInternet:boolean;
   
   constructor() {
-    this.checkInternet();
+     this.checkInternet();
  }
 
   ngOnInit(){
-     this.checkInternet();
+    let status;
+    status = navigator.onLine
+   // console.log( status )
+    this.noInternet = !status;
   }
-
+//
+// Listen to network changes
+//
   checkInternet(){
       window.addEventListener("offline", () => { 
          this.noInternet = true;
          this.checkConnectionEmitter( { 'connection': false } );
-         setTimeout(() => this.checkInternet(), 1000); //call it again to keep the program running..
-               console.log( 'checkInternet' )
+               console.log( 'checkInternet offline' )
     });
 
      window.addEventListener("online", () => { 

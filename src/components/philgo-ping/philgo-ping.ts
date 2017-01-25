@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import {  Router } from '@angular/router';
 //Services
 import { PhilgoApi } from '../../providers/philgo-api';
 //Components
@@ -29,14 +28,16 @@ isFaulty:boolean;
 runPing:boolean;
  constructor( private philgo: PhilgoApi, 
               private sirenComponent: SirenComponent, 
-              private checkConnect: CmsPage){
-  
- 
-  }
+              private checkConnect: CmsPage){}
 
   ngOnInit(){
-  this.checkConnect.isConnected.subscribe( data => this.handleConnectionState( data ) );
-      this.pingLoop();
+    let status;
+    status = navigator.onLine
+    //console.log( status )
+    this.runPing = status;
+
+
+    setTimeout( () => this.pingLoop(), 100);
   }
   // ngOnDestroy(){
   //     this.runPing = false;
@@ -45,21 +46,23 @@ runPing:boolean;
   //
   //  Function that waits for PhilgoApi service
   //
-  subscription;
-  pingLoop() {
-    if( this.runPing == false ||
-        this.runPing == null || 
-        this.runPing == undefined) 
-        return;
 
-    let url = this.graphUrl + '&dummy=' + (new Date).getTime();
-    //let url = this.graphUrl;
-     this.subscription = this.philgo
-                                .ping( url, this.timeOut )  // url will be passed into http service function
-                                .subscribe( 
-                                    ( re ) => this.handleSuccess( re ),      //get the data
-                                    ( error ) => this.handleError( error )); //get http status code
-               setTimeout( ()=>{ this.pingLoop() }, this.timeOut );
+  subscription;
+  pingLoop() { 
+        this.checkConnect.isConnected
+                          .subscribe( data => this.runPing = data.connection );
+        //console.log( this.runPing )
+        if( this.runPing == false ){}
+        else{
+        let url = this.graphUrl + '&dummy=' + (new Date).getTime();
+        //let url = this.graphUrl;
+        this.subscription = this.philgo
+                                    .ping( url, this.timeOut )  // url will be passed into http service function
+                                    .subscribe( 
+                                        ( re ) => this.handleSuccess( re ),      //get the data
+                                        ( error ) => this.handleError( error )); //get http status code
+            }
+        setTimeout( () => this.pingLoop(), this.timeOut );  
     }
   //
   //  Function if url succeed
@@ -113,17 +116,13 @@ runPing:boolean;
 
         this.responseData.push( data );
         //limit bar lenght to fit to 
-        if (this.barLength > 286) this.barLength = 286;
+        if ( this.barLength > 286 ) this.barLength = 286;
         if ( this.responseData.length == this.barLength + 1 ){
             this.responseData.shift();
         }
        // console.log(this.responseData);
   } 
 
-  handleConnectionState( e ){
-    this.runPing = e.connection;
-    console.log( e.connection );
-    this.pingLoop();
-  }
+
 
 }

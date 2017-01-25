@@ -10,7 +10,7 @@ This project is based on [Aonic Repository](https://github.com/thruthesky/aonic)
 [graphUrl] = "'http://your.website.com'">
 </philgo-ping>  
 ```  
---Add contact number to siren.ts line 104, under sendText() function. 
+--Add contact number to siren.ts line 104, under sendText() function.   
 ----Needs proper handling with multiple number. I just focused first in 1.
 ```javascript
 //this.numberTxt = [ 'admin number' ];
@@ -75,10 +75,10 @@ var storedNames = JSON.parse(localStorage.getItem("names"));
         
 ###Sample Output ( SMS sending pattern check )
 
-      4siren.ts:119 sendText. Next in:  1 Minute 36  <-- Minute mark
-      4siren.ts:119 sendText. Next in:  1 Minute 37
-      4siren.ts:119 sendText. Next in:  5 Minute 38
-      4siren.ts:119 sendText. Next in:  10 Minute 43
-      4siren.ts:119 sendText. Next in:  20 Minute 53
-      4siren.ts:119 sendText. Next in:  20 Minute 13
-      4siren.ts:119 sendText. Next in:  20 Minute 33
+     sendText. Next in:  1 Minute 36  <-- Minute mark
+      sendText. Next in:  1 Minute 37
+      sendText. Next in:  5 Minute 38
+      sendText. Next in:  10 Minute 43
+      sendText. Next in:  20 Minute 53
+      sendText. Next in:  20 Minute 13
+       sendText. Next in:  20 Minute 33

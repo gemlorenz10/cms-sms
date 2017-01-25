@@ -31,10 +31,11 @@ runPing:boolean;
               private sirenComponent: SirenComponent, 
               private checkConnect: CmsPage){
   
-  this.checkConnect.isConnected.subscribe( data => this.handleConnectionState( data ) );
+ 
   }
 
   ngOnInit(){
+  this.checkConnect.isConnected.subscribe( data => this.handleConnectionState( data ) );
       this.pingLoop();
   }
   // ngOnDestroy(){
@@ -50,7 +51,7 @@ runPing:boolean;
         this.runPing == null || 
         this.runPing == undefined) 
         return;
-        
+
     let url = this.graphUrl + '&dummy=' + (new Date).getTime();
     //let url = this.graphUrl;
      this.subscription = this.philgo

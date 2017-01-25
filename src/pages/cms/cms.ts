@@ -23,24 +23,26 @@ export class CmsPage {
   
   constructor() {
     this.checkInternet();
-  }
+ }
 
   ngOnInit(){
-    this.checkInternet();
+     this.checkInternet();
   }
-
-
 
   checkInternet(){
       window.addEventListener("offline", () => { 
          this.noInternet = true;
          this.checkConnectionEmitter( { 'connection': false } );
-     });
+         setTimeout(() => this.checkInternet(), 1000); //call it again to keep the program running..
+               console.log( 'checkInternet' )
+    });
 
      window.addEventListener("online", () => { 
         this.noInternet = false;
         this.checkConnectionEmitter( { 'connection': true } );
-      });
+              console.log( 'checkInternet online!' )
+    });
+
   }
 
 

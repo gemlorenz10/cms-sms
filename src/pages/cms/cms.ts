@@ -13,10 +13,13 @@ export class CmsPage {
   noInternet:boolean;
   
   constructor() {
+
      this.checkInternet();
+
  }
 
   ngOnInit(){
+
     let status;
     status = navigator.onLine
     this.noInternet = !status;
@@ -28,6 +31,7 @@ export class CmsPage {
 // Listen to network changes
 //
   checkInternet(){
+
       window.addEventListener("offline", () => { 
          this.noInternet = true;
          setTimeout(() => this.loadingDot(), 2000)
@@ -45,14 +49,15 @@ export class CmsPage {
   }
 
   checkConnectionEmitter(e){
+
     return this.isConnected.emit(e);
+
   }
 
 
-
-
     dotdotdot;
-    loadingDot(){
+loadingDot(){
+
         let dotspan = document.getElementById("loading");
         this.dotdotdot = setInterval( () => {
         if(dotspan.innerHTML.length == 3) {

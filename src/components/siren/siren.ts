@@ -50,16 +50,12 @@ export class SirenComponent {
   counter = 0;
   soundSiren( err ){
     
-    this.counter++
-    if ( this.isMuted == false && this.isPlaying == false ) {
-        if( this.counter >= this.probeCount ) this.audio.play();
-        //console.log('should be playing');
-    }  
-    if( this.counter >= this.probeCount ) this.sendNow( err, this.counter );
+        this.counter++
+        if ( this.isMuted == false && this.isPlaying == false ) {
+            if( this.counter >= this.probeCount ) this.audio.play();
+        }  
+        if( this.counter >= this.probeCount ) this.sendNow( err, this.counter );
     
-        // console.log( 'count :', this.counter );
-        // console.log( 'playing? :',  this.isPlaying );
-
     }
   //
   //    Functions to improve user experience.
@@ -80,18 +76,22 @@ export class SirenComponent {
 
     }
     OnKeyDownValidation( e ){
+
         if ( e.code == 'Enter' ) e.target.blur(); // PC
         if ( e.key == 'Enter' ) e.target.blur();    //Android 5.1.1
         if ( e.keyCode == 13 || e.keyIdentifier == 'Enter') e.target.blur(); // Android 4.4.2
-      // console.log( e )
+
     }
     showAlertProbeCount:boolean;
     OnFocusValidation( e ){
+
         if ( e.type == 'focus' ) this.showAlertProbeCount = true;
-       // console.log( e );
+
     }
     OnBlurValidation( e ){
+
         this.showAlertProbeCount = false;
+
     }
 
     //
@@ -112,18 +112,9 @@ export class SirenComponent {
         this.numberTxt.forEach( val => {
               this.sms.sendSms( val, this.messageTxt );            
         });    
-        // console.log( 'send', this.label )
 
         this.sms.show.subscribe( data => this.handleSmsEvent( data ) ); //wait for SmsService emit
-        
-        // console.log( 'time: ', (new Date).getMinutes() )
-        // console.log( 'next send in', this.tick );
-        
         this.sendCount++;   
-        
-        // console.log('Message was sent');                        //
-        // console.log('Message sent = ', this.sendCount);            // for testing
-        
         this.dontSend = true;
 
     }
@@ -137,8 +128,6 @@ export class SirenComponent {
     sendNow( res, count ){
 
         if ( this.dontSend == true ) return;
-
-        //if ( this.sendCount == 0 ){ this.tick = 1; }
         else if ( this.sendCount <= 1 ) { this.tick = 1; }// 1min
         // 3rd send will land here. sendCount value will increment after sendText() is done.
         else if ( this.sendCount == 2) { this.tick = 5; }// 5 mins

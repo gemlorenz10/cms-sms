@@ -33,15 +33,11 @@ runPing:boolean;
   ngOnInit(){
     let status;
     status = navigator.onLine
-    //console.log( status )
     this.runPing = status;
 
 
     setTimeout( () => this.pingLoop(), 100);
   }
-  // ngOnDestroy(){
-  //     this.runPing = false;
-  // }
 
   //
   //  Function that waits for PhilgoApi service
@@ -80,7 +76,6 @@ runPing:boolean;
               this.siren.success(); 
               this.isFaulty = false;  // displays red border to indicate the server is still considered faulty
         }                             //only considered good when successCount meets probeCount
-        // console.log( 'this is probe count', this.siren.probeCount );
     
   }
   //
@@ -105,7 +100,6 @@ runPing:boolean;
         this.siren.soundSiren( error ); // function from child compoment SirenComponent
         this.handleResponse( error );   // append red bar
         if( this.siren.counter >= this.siren.probeCount ) this.isFaulty = true; 
-       // console.log( this.siren.counter, this.siren.probeCount )
 
   }
   //

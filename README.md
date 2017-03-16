@@ -7,7 +7,7 @@ This project is based on [Aonic Repository](https://github.com/thruthesky/aonic)
  ```HTML
 <philgo-ping
 [label] = "'website.com'"
-[graphUrl] = "'http://your.website.com'">
+[graphUrl] = "'http://philgo-server/?module=ajax&action=version&submit=1'">
 </philgo-ping>  
 ```  
 --Add contact number to siren.ts line 104, under sendText() function.   
@@ -19,22 +19,30 @@ this.numberTxt = 'admin number';
 * ~~Server Statistics Monitoring~~
 * ~~Internet Monitoring~~
 
-##Programs Used
-    - NodeJS
-    - Angular2
-    - Ionic-CLI
-    - Cordova
-##Platform
-    - Android
-##Environment
-###Install Packages
-    npm Install
-    npm install ionic-angular
-###Testing
-    ionic serve
-###Testing on mobile
-    ionic platform add android
-    ionic run android
+Programs Used  
+* NodeJS
+* Angular2  
+* Ionic-CLI  
+* Cordova  
+Platform  
+    - Android  
+
+Install Packages  
+* npm Install  
+* npm install ionic-angular  
+
+Testing  
+* ionic serve  
+
+Testing on mobile  
+* ionic platform add android  
+* ionic run android
+
+Production mode
+* ionic build android --prod  
+* ionic run android --prod  
+* Both commands are not working.
+
 
 ## TODO
 

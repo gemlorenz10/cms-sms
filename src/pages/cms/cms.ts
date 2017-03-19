@@ -19,7 +19,8 @@ export class CmsPage {
  }
 
   ngOnInit(){
-
+//
+//If network status
     let status;
     status = navigator.onLine
     this.noInternet = !status;

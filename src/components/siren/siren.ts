@@ -101,8 +101,7 @@ export class SirenComponent {
     messageTxt:string;
     sendText( res, count ){
 
-       // this.numberTxt = [ '09174678603' ];
-        this.numberTxt = '09174678603';
+        this.numberTxt = 'admin number';
         this.messageTxt =  res.server + ' is down!\n' +
                             // 'Drop Count: ' + count + '\n' +
                             'Status Code: ' +res.status + '\n' +
@@ -110,9 +109,6 @@ export class SirenComponent {
                             'Check URL: ' + res.url + '\n' +
                             'Sent by: CMS Withcenter, Inc.';
 
-        // this.numberTxt.forEach( val => {
-        //       this.sms.sendSms( val, this.messageTxt );            
-        // });
         this.sms.sendSms( this.numberTxt, this.messageTxt );
 
         this.sms.show.subscribe( data => this.handleSmsEvent( data ) ); //wait for SmsService emit
